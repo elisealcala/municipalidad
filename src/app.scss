@@ -14,12 +14,6 @@ $accent: #09f;
 // Place any CSS rules you want to apply on both iOS and Android here.
 // This is where the vast majority of your CSS code goes.
 
-.btnWhite {
-  color: #333;
-  font-size: 14px;
-}
-
-.bar {
-  height: 30px;
-  background-color: $accent;
+.splashScreen {
+  background: linear-gradient(to bottom, #96C93D, #00B09B);
 }
