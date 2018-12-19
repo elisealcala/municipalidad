@@ -3,7 +3,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
     bootstrap: [
@@ -15,7 +15,7 @@ import { SplashScreenComponent } from './splash-screen/splash-screen.component';
     ],
     declarations: [
         AppComponent,
-        SplashScreenComponent
+        HomeComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
