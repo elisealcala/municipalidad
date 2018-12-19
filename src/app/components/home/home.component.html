@@ -1,3 +1,19 @@
-<StackLayout class="splashScreen">
+<!-- <StackLayout class="splashScreen">
   <Label text="With loadMode set to async the UI won't be blocked" textWrap="true"></Label>
+</StackLayout> -->
+<StackLayout class="splashScreen">
+  <StackLayout orientation="horizontal" class="titleLayout">
+    <Label text="Municipalidad de La Molina" class="title"></Label>
+  </StackLayout>
+  <ListView [items]="sections" class="listSections">
+    <ng-template let-section="item" let-i="index" let-odd="odd" let-even="even">
+      <!-- The item template can only have a single root view container (e.g. GridLayout, StackLayout, etc.)-->
+      <StackLayout orientation="horizontal" class="singleSection">
+        <GridLayout columns="50, auto, *" rows="50, auto, *">
+          <Label row="0" col="1" colSpan="2" [text]="section.title"></Label>
+          <Label row="0" col="0" [text]="section.description"></Label>
+        </GridLayout>
+      </StackLayout>
+    </ng-template>
+  </ListView>
 </StackLayout>

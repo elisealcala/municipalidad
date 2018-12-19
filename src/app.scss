@@ -17,3 +17,27 @@ $accent: #09f;
 .splashScreen {
   background: linear-gradient(to bottom, #96C93D, #00B09B);
 }
+
+.titleLayout {
+  background-color: rgb(113, 177, 3); 
+  height: 300px;
+  color: white;
+  text-align: center;
+  .title {
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+.listSections {
+  background-color: transparent;
+  margin: 50px 20px;
+  height: 100%;
+  .singleSection {
+    background-color: white;
+    padding: 30px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+  }
+}
