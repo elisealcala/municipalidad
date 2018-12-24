@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { registerElement } from 'nativescript-angular/element-registry';
 @Component({
   selector: 'ns-home',
   templateUrl: './home.component.html',
