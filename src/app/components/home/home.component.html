@@ -32,7 +32,7 @@
           </GridLayout>
         </StackLayout>
         <StackLayout class="singleSection">
-          <GridLayout columns="*, 80%" height="80">
+          <GridLayout columns="*, 80%" height="80" (tap)="navigateToCategory()">
             <FlexboxLayout flexDirection="column" justifyContent="center">
               <Label class="title" text="Contraloría Vecinal"></Label>
               <Label class="description" textWrap="true" text="Espacio para ver los gastos de la municipalidad"></Label>

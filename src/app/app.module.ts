@@ -4,6 +4,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from './components/home/home.component';
+import { ContraloriaComponent } from "./components/contraloria/contraloria.component";
 
 @NgModule({
     bootstrap: [
@@ -15,7 +16,8 @@ import { HomeComponent } from './components/home/home.component';
     ],
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        ContraloriaComponent,
     ],
     schemas: [
         NO_ERRORS_SCHEMA
