@@ -1,20 +1,46 @@
 <GridLayout rows="auto, *" class="splashScreen">
   <FlexboxLayout padding="5 0" row="0" class="topView" flexDirection="row" width="100%" alignItems="center">
-    <Label class="fas" padding="10 20" style="font-size: 20" text="&#xf104;" (tap)="goBack()"></Label>
-    <Label textWrap="false" [text]="title" fontSize="14" horizontalAlignment="center"></Label>
+    <Label class="fas" padding="10 20 10 10" style="font-size: 20" text="&#xf104;" (tap)="goBack()"></Label>
+    <Label fontWeight="bold" textWrap="false" [text]="title" fontSize="12" horizontalAlignment="center"></Label>
   </FlexboxLayout>
   <StackLayout row="1">
     <ScrollView scrollBarIndicatorVisible="false">
       <StackLayout>
         <ActivityIndicator *ngIf="isBusy" [busy]="isBusy" class="activity-indicator"></ActivityIndicator>
         <StackLayout *ngIf="!isBusy">
-          <StackLayout class="main-expenses">
-            <FlexBoxLayout *ngFor="let expense of currentExpenseKeys">
-              <Label [text]="expense"></Label>
-              <Label [text]="currentExpense[expense]"></Label>
+          <FlexBoxLayout class="filter-container">
+            <StackLayout (tap)="selectYear()" [ngClass]="{'active': filterSelected === 'anual'}" class="filter-month">
+              <Label text="Anual" textAlignment="center"></Label>
+            </StackLayout>
+            <StackLayout (tap)="selectMonths()" [ngClass]="{'active': filterSelected === 'mensual'}" class="filter-month">
+              <Label text="Mensual" textAlignment="center"></Label>
+            </StackLayout>
+            <StackLayout (tap)="selectTrimester()" [ngClass]="{'active': filterSelected === 'trimestral'}" class="filter-month">
+              <Label text="Trimestral" textAlignment="center"></Label>
+            </StackLayout>
+          </FlexBoxLayout>
+          <StackLayout *ngIf="filterSelected === 'anual'" class="main-expenses">
+            <FlexBoxLayout justifyContent="space-between" class="single-expense" *ngFor="let expense of currentExpenseKeys">
+              <Label color="#50a8d6" fontWeight="bold" [text]="expense | uppercase"></Label>
+              <Label [text]="expense !== 'avance' ? 'S/. ' + currentExpense[expense] : '% ' + currentExpense[expense]"></Label>
             </FlexBoxLayout>
           </StackLayout>
-          <StackLayout class="gastoChild" *ngFor="let gasto of gastos" (tap)="goToExpense(gasto.id, gasto.nombre)">
+          <ScrollView orientation="horizontal" *ngIf="filterSelected !== 'anual'" scrollBarIndicatorVisible="false">
+            <FlexBoxLayout>
+              <StackLayout minWidth="220px" class="main-expenses" *ngFor="let gasto of gastosMensuales">
+                <FlexBoxLayout justifyContent="space-between" class="single-expense">
+                  <Label color="#50a8d6" fontWeight="bold" text="DEVENGADO"></Label>
+                  <Label [text]="gasto.devengado"></Label>
+                </FlexBoxLayout>
+                <FlexBoxLayout justifyContent="space-between" class="single-expense">
+                  <Label color="#50a8d6" fontWeight="bold" text="GIRADO"></Label>
+                  <Label [text]="gasto.girado"></Label>
+                </FlexBoxLayout>
+              </StackLayout>
+            </FlexBoxLayout>
+          </ScrollView>
+          <Label margin="20 0 10" fontWeight="bold" text="¿Cómo se estructura el gasto?" textAlignment="center" textWrap="true"></Label>
+          <StackLayout class="gastoChild" *ngFor="let gasto of gastos" (tap)="goToExpense(gasto)">
             <Label color="#50a8d6" fontWeight="bold" [text]="gasto.nombre" textWrap="true"></Label>
             <Label marginTop="5px" [text]="'S/. ' + gasto.devengado" lineHeight="10px" textWrap="true"></Label>
           </StackLayout>

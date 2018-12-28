@@ -14,10 +14,12 @@ import { Gasto } from '../../models';
 export class GastoComponent implements OnInit {
   public title: string;
   public id: number;
+  public filterSelected = 'anual';
   public isBusy = true;
   public currentExpense: Gasto | {};
   public currentExpenseKeys = [];
   public gastos: [];
+  public gastosMensuales: [];
 
   constructor(
     private data: DataService,
@@ -53,9 +55,51 @@ export class GastoComponent implements OnInit {
     })
   }
 
-  public goToExpense(id: number, name: string) {
-    this.data.changeTitle(name);
-    this.router.navigate(['gasto', id]);
+  public selectYear() {
+    this.isBusy = true;
+    request({
+      url: `https://consulta-amigable-apirest.herokuapp.com/api/gastos/${this.id}`,
+      method: "GET"
+    }).then((response: HttpResponse) => {
+      const str = response.content.toJSON();
+      this.gastos = str;
+      this.filterSelected = 'anual';
+      this.isBusy = false;
+    });
+  }
+
+  public selectMonths(){
+    this.isBusy = true;
+    request({
+      url: `https://consulta-amigable-apirest.herokuapp.com/api/gastos/${this.id}/meses`,
+      method: "GET"
+    }).then((response: HttpResponse) => {
+      const str = response.content.toJSON();
+      this.gastosMensuales = str;
+      console.log(this.gastosMensuales);
+      this.filterSelected = 'mensual';
+      this.isBusy = false;
+    });
+  }
+
+  public selectTrimester() {
+    this.isBusy = true;
+    request({
+      url: `https://consulta-amigable-apirest.herokuapp.com/api/gastos/${this.id}/trimestres`,
+      method: "GET"
+    }).then((response: HttpResponse) => {
+      const str = response.content.toJSON();
+      this.gastosMensuales = str;
+      console.log(this.gastosMensuales);
+      this.filterSelected = 'trimestral';
+      this.isBusy = false;
+    });
+  }
+
+  public goToExpense(gasto:Gasto) {
+    this.data.changeTitle(gasto.nombre);
+    this.data.changeData(gasto);
+    this.router.navigate(['gasto', gasto.id]);
   }
 
   public goBack() {
