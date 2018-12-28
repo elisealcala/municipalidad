@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { request, HttpResponse } from "tns-core-modules/http";
 import { Page } from 'tns-core-modules/ui/page/page';
@@ -15,8 +16,13 @@ export class ContraloriaComponent implements OnInit {
   public gastos = [];
   public title: string;
 
-  constructor(page: Page, private router: RouterExtensions, private data: DataService) {
+  constructor(page: Page, private angRouter: Router, private router: RouterExtensions, private data: DataService) {
     page.actionBarHidden = true;
+    angRouter.events.forEach((event) => {
+      if (event instanceof NavigationEnd) {
+        this.data.currentTitle.subscribe(title => this.title = title);
+      }
+    });
   }
 
   ngOnInit() {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { request, HttpResponse } from "tns-core-modules/http";
 import { Page } from 'tns-core-modules/ui/page/page';
 import { RouterExtensions } from 'nativescript-angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { DataService } from '../../services/data.service';
 
 
@@ -19,10 +19,16 @@ export class GastoComponent implements OnInit {
   constructor (
     private data: DataService,
     private route: ActivatedRoute,
+    private angRouter: Router,
     public page: Page,
     private router: RouterExtensions,
   ) {
     page.actionBarHidden = true;
+    angRouter.events.forEach((event) => {
+      if (event instanceof NavigationEnd) {
+        this.data.currentTitle.subscribe(title => this.title = title);
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -38,6 +44,11 @@ export class GastoComponent implements OnInit {
         console.log(this.gastos);
       });
     })
+  }
+
+  public goToExpense(id: number, name: string) {
+    this.data.changeTitle(name);
+    this.router.navigate(['gasto', id]);
   }
 
   public goBack() {
