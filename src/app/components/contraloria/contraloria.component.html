@@ -1,0 +1,16 @@
+<GridLayout rows="auto, *" class="contraloriaBg">
+  <FlexboxLayout row="0" class="topView" flexDirection="row" width="100%" alignItems="center">
+    <Label class="fas" padding="10 10" margin="5 15" style="font-size: 30" text="&#xf104;" (tap)="goBack()"></Label>
+    <Label text="Contraloría Vecinal" fontSize="22" horizontalAlignment="center"></Label>
+  </FlexboxLayout>
+  <StackLayout row="1">
+    <ScrollView scrollBarIndicatorVisible="false">
+      <StackLayout>
+      	<StackLayout *ngFor="let gasto of gastos" (tap)="goToExpense(gasto.id, gasto.nombre)">
+          <Label [text]="gasto.id"></Label>
+      	  <Label [text]="gasto.nombre"></Label>
+      	</StackLayout>
+      </StackLayout>
+    </ScrollView>
+  </StackLayout>
+</GridLayout> 

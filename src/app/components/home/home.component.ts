@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Page } from 'tns-core-modules/ui/page/page';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'ns-home',
@@ -7,70 +10,16 @@ import { Component, OnInit } from '@angular/core';
   moduleId: module.id
 })
 export class HomeComponent implements OnInit {
-  public sections = [
-    {
-      title: 'Boton S.O.S',
-      description: 'Botón de emergencia'
-    },
-    {
-      title: 'Acerca de La Molina',
-      description: 'Entérate más sobra La Molina'
-    },
-    {
-      title: 'Contraloría Vecinal',
-      description: 'Espacio para ver los gastos de la municipalidad'
-    },
-    {
-      title: 'Quejas y Sugerencias',
-      description: 'Déjanos tus'
-    },
-    {
-      title: 'Datos Útiles',
-      description: 'Listado de datos útiles'
-    },
-    {
-      title: 'Boton S.O.S',
-      description: 'Botón de emergencia'
-    },
-    {
-      title: 'Acerca de La Molina',
-      description: 'Entérate más sobra La Molina'
-    },
-    {
-      title: 'Contraloría Vecinal',
-      description: 'Espacio para ver los gastos de la municipalidad'
-    },
-    {
-      title: 'Quejas y Sugerencias',
-      description: 'Déjanos tus'
-    },
-    {
-      title: 'Datos Útiles',
-      description: 'Listado de datos útiles'
-    },
-    {
-      title: 'Boton S.O.S',
-      description: 'Botón de emergencia'
-    },
-    {
-      title: 'Acerca de La Molina',
-      description: 'Entérate más sobra La Molina'
-    },
-    {
-      title: 'Contraloría Vecinal',
-      description: 'Espacio para ver los gastos de la municipalidad'
-    },
-    {
-      title: 'Quejas y Sugerencias',
-      description: 'Déjanos tus'
-    },
-    {
-      title: 'Datos Útiles',
-      description: 'Listado de datos útiles'
-    }
-  ];
-
-  constructor() {}
+  
+  constructor(private router: Router, page: Page, private data: DataService) {
+    page.actionBarHidden = true;
+  }
 
   ngOnInit() {}
+
+  public navigateToCategory() {
+    this.data.changeTitle('Contraloría Vecinal')
+    this.router.navigate(['contraloria']);
+  }
+
 }
