@@ -4,7 +4,7 @@ import { Page } from 'tns-core-modules/ui/page/page';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { DataService } from '../../services/data.service';
-
+import { Gasto } from '../../models';
 
 @Component({
   selector: 'ns-gasto',
@@ -14,9 +14,12 @@ import { DataService } from '../../services/data.service';
 export class GastoComponent implements OnInit {
   public title: string;
   public id: number;
+  public isBusy = true;
+  public currentExpense: Gasto | {};
+  public currentExpenseKeys = [];
   public gastos: [];
 
-  constructor (
+  constructor(
     private data: DataService,
     private route: ActivatedRoute,
     private angRouter: Router,
@@ -32,7 +35,11 @@ export class GastoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data.currentTitle.subscribe(title => this.title = title);
+    this.data.currentTitle.subscribe(title => this.title = title.length > 30 ? `${title.substr(0, 30)}...` : title);
+    this.data.currentExpense.subscribe(expense => this.currentExpense = expense);
+    const elem = ['id', 'nombre', 'descripcion', 'idRef'];
+    this.currentExpenseKeys = Object.keys(this.currentExpense).filter(c => !elem.includes(c));
+    console.log(this.currentExpenseKeys);
     this.route.params.subscribe(params => {
       this.id = params.id;
       request({
@@ -41,7 +48,7 @@ export class GastoComponent implements OnInit {
       }).then((response: HttpResponse) => {
         const str = response.content.toJSON();
         this.gastos = str;
-        console.log(this.gastos);
+        this.isBusy = false;
       });
     })
   }

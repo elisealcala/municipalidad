@@ -1,14 +1,23 @@
-<GridLayout rows="auto, *" class="contraloriaBg">
-  <FlexboxLayout row="0" class="topView" flexDirection="row" width="100%" alignItems="center">
-    <Label class="fas" padding="10 10" margin="5 15" style="font-size: 30" text="&#xf104;" (tap)="goBack()"></Label>
-    <Label [text]="title" fontSize="10" horizontalAlignment="center"></Label>
+<GridLayout rows="auto, *" class="splashScreen">
+  <FlexboxLayout padding="5 0" row="0" class="topView" flexDirection="row" width="100%" alignItems="center">
+    <Label class="fas" padding="10 20" style="font-size: 20" text="&#xf104;" (tap)="goBack()"></Label>
+    <Label textWrap="false" [text]="title" fontSize="14" horizontalAlignment="center"></Label>
   </FlexboxLayout>
   <StackLayout row="1">
     <ScrollView scrollBarIndicatorVisible="false">
       <StackLayout>
-        <StackLayout *ngFor="let gasto of gastos" (tap)="goToExpense(gasto.id, gasto.nombre)">
-          <Label [text]="gasto.id"></Label>
-          <Label [text]="gasto.nombre"></Label>
+        <ActivityIndicator *ngIf="isBusy" [busy]="isBusy" class="activity-indicator"></ActivityIndicator>
+        <StackLayout *ngIf="!isBusy">
+          <StackLayout class="main-expenses">
+            <FlexBoxLayout *ngFor="let expense of currentExpenseKeys">
+              <Label [text]="expense"></Label>
+              <Label [text]="currentExpense[expense]"></Label>
+            </FlexBoxLayout>
+          </StackLayout>
+          <StackLayout class="gastoChild" *ngFor="let gasto of gastos" (tap)="goToExpense(gasto.id, gasto.nombre)">
+            <Label color="#50a8d6" fontWeight="bold" [text]="gasto.nombre" textWrap="true"></Label>
+            <Label marginTop="5px" [text]="'S/. ' + gasto.devengado" lineHeight="10px" textWrap="true"></Label>
+          </StackLayout>
         </StackLayout>
       </StackLayout>
     </ScrollView>

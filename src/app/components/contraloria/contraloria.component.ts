@@ -4,7 +4,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import { request, HttpResponse } from "tns-core-modules/http";
 import { Page } from 'tns-core-modules/ui/page/page';
 import { DataService } from '../../services/data.service';
-
+import { Gasto } from '../../models';
 
 @Component({
   selector: 'ns-contraloria',
@@ -14,6 +14,7 @@ import { DataService } from '../../services/data.service';
 export class ContraloriaComponent implements OnInit {
 
   public gastos = [];
+  public isBusy = true;
   public title: string;
 
   constructor(page: Page, private angRouter: Router, private router: RouterExtensions, private data: DataService) {
@@ -33,13 +34,14 @@ export class ContraloriaComponent implements OnInit {
     }).then((response: HttpResponse) => {
       const str = response.content.toJSON();
       this.gastos = str;
-      console.log(this.gastos);
+      this.isBusy = false;
     });
   }
 
-  public goToExpense(id:number, name:string) {
-    this.data.changeTitle(name);
-    this.router.navigate(['gasto', id]);
+  public goToExpense(gasto: Gasto) {
+    this.data.changeTitle(gasto.nombre);
+    this.data.changeData(gasto);
+    this.router.navigate(['gasto', gasto.id]);
   }
 
   public goBack() {
