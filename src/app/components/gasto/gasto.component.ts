@@ -16,7 +16,7 @@ export class GastoComponent implements OnInit {
   public id: number;
   public filterSelected = 'anual';
   public isBusy = true;
-  public currentExpense: Gasto | {};
+  public currentExpense: Gasto;
   public currentExpenseKeys = [];
   public gastos: [];
   public gastosMensuales: [];
@@ -37,11 +37,9 @@ export class GastoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data.currentTitle.subscribe(title => this.title = title.length > 30 ? `${title.substr(0, 30)}...` : title);
-    this.data.currentExpense.subscribe(expense => this.currentExpense = expense);
+    // this.data.currentTitle.subscribe(title => this.title = title.length > 30 ? `${title.substr(0, 30)}...` : title);
+    // this.data.currentExpense.subscribe(expense => this.currentExpense = expense);
     const elem = ['id', 'nombre', 'descripcion', 'idRef'];
-    this.currentExpenseKeys = Object.keys(this.currentExpense).filter(c => !elem.includes(c));
-    console.log(this.currentExpenseKeys);
     this.route.params.subscribe(params => {
       this.id = params.id;
       request({
@@ -49,8 +47,13 @@ export class GastoComponent implements OnInit {
         method: "GET"
       }).then((response: HttpResponse) => {
         const str = response.content.toJSON();
-        this.gastos = str;
+        console.log(str);
+        this.currentExpense = str[0];
+        this.title = this.currentExpense.nombre;
+        this.gastos = str.filter((s, i) => i!== 0);
         this.isBusy = false;
+        this.currentExpenseKeys = Object.keys(this.currentExpense).filter(c => !elem.includes(c));
+        console.log(this.currentExpenseKeys);
       });
     })
   }

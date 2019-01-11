@@ -33,7 +33,7 @@ export class ContraloriaComponent implements OnInit {
       method: "GET"
     }).then((response: HttpResponse) => {
       const str = response.content.toJSON();
-      this.gastos = str;
+      this.gastos = str.filter((s,i) => i !== 0);
       this.isBusy = false;
     });
   }
