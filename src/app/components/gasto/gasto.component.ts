@@ -14,6 +14,8 @@ import { Gasto } from '../../models';
 export class GastoComponent implements OnInit {
   public title: string;
   public id: number;
+  public months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+  public trimesters = ['Primer Trimestre', 'Segundo Trimestre', 'Tercer Trimestre', 'Cuarto Trimestre'];
   public filterSelected = 'anual';
   public isBusy = true;
   public currentExpense: Gasto;
@@ -58,44 +60,63 @@ export class GastoComponent implements OnInit {
     })
   }
 
+  public formatMoney(number: number) {
+    return number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+  }
+
+  public getExpense(number:number, name:string) {
+    if (name === 'avance') {
+      return `${number} %`
+    }
+    return `S/. ${this.formatMoney(number)}`;
+  }
+
   public selectYear() {
-    this.isBusy = true;
+    // this.isBusy = true;
     request({
       url: `https://consulta-amigable-apirest.herokuapp.com/api/gastos/${this.id}`,
       method: "GET"
     }).then((response: HttpResponse) => {
       const str = response.content.toJSON();
-      this.gastos = str;
+      this.gastos = str.filter((s, i) => i !== 0);;
       this.filterSelected = 'anual';
-      this.isBusy = false;
+      // this.isBusy = false;
     });
   }
 
   public selectMonths(){
-    this.isBusy = true;
+    // this.isBusy = true;
     request({
       url: `https://consulta-amigable-apirest.herokuapp.com/api/gastos/${this.id}/meses`,
       method: "GET"
     }).then((response: HttpResponse) => {
       const str = response.content.toJSON();
-      this.gastosMensuales = str;
-      console.log(this.gastosMensuales);
+      const monthsData = str.map((s,i) => ({
+        month: this.months[i],
+        devengado: s.devengado,
+        girado: s.girado,
+      }))
+      this.gastosMensuales = monthsData;
       this.filterSelected = 'mensual';
-      this.isBusy = false;
+      // this.isBusy = false;
     });
   }
 
   public selectTrimester() {
-    this.isBusy = true;
+    // this.isBusy = true;
     request({
       url: `https://consulta-amigable-apirest.herokuapp.com/api/gastos/${this.id}/trimestres`,
       method: "GET"
     }).then((response: HttpResponse) => {
       const str = response.content.toJSON();
-      this.gastosMensuales = str;
-      console.log(this.gastosMensuales);
+      const trimesterData = str.map((s, i) => ({
+        trimester: this.trimesters[i],
+        devengado: s.devengado,
+        girado: s.girado,
+      }))
+      this.gastosMensuales = trimesterData;
       this.filterSelected = 'trimestral';
-      this.isBusy = false;
+      // this.isBusy = false;
     });
   }
 

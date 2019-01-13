@@ -89,14 +89,15 @@ $accent: #09f;
 
 .main-expenses {
   background: #fff;
-  border-radius: 5px;
+  border-radius: 10 10 10 10;
   margin: 10 20;
   .single-expense {
     padding: 12 10;
     border-top-color: rgba(176, 222, 253, 0.733);
     border-top-width: 0.5px;
-    &:first-child{
+    &:nth-child(1){
       border-top-width: 0px;
+      border-top-color: white;
     }
   }
 }
@@ -104,6 +105,7 @@ $accent: #09f;
 .filter-container {
   width: 90%;
   margin: 10 20;
+  border-radius: 10 10 10 10;
 }
 
 .filter-month {
@@ -118,4 +120,9 @@ $accent: #09f;
     background: #50a8d6;
     color: white;
   }
+}
+
+.gastoTopBar {
+  background: #0092CB;
+  color: white;
 }
