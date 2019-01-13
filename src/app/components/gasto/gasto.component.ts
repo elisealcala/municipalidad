@@ -132,11 +132,12 @@ export class GastoComponent implements OnInit {
     });
   }
 
-  public openInformation() {
+  public openInformation(expense) {
+    console.log(expense);
     alert({
-      title: "Your title",
-      message: "Your message",
-      okButtonText: "Your button text"
+      title: expense,
+      message: expense,
+      okButtonText: "Listo"
     }).then(() => {
       console.log("Dialog closed!");
     })

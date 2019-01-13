@@ -78,7 +78,7 @@ $accent: #09f;
 
 .gastoChild {
   background: #fff;
-  border-radius: 5px;
+  border-radius: 10 10 10 10;
   padding: 20;
   margin: 10 20;
 }
@@ -100,6 +100,13 @@ $accent: #09f;
       border-top-color: white;
     }
   }
+}
+
+.sosSection {
+  padding: 10;
+  background: #EE4D4D;
+  color: white;
+  text-align: center;
 }
 
 .filter-container {

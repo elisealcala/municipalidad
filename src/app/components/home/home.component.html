@@ -1,66 +1,58 @@
-<GridLayout rows="auto, *" class="splashScreen">
-  <StackLayout class="titleLayout" row="0">
-    <Label text="Municipalidad de La Molina" horizontalAlignment="center" class="title" margin="20"></Label>
-  </StackLayout>
-  <StackLayout row="1">
-    <ScrollView scrollBarIndicatorVisible="false">
-      <StackLayout margin="0 15">
-        <StackLayout class="singleSection">
-          <GridLayout columns="*, 80%" height="80">
-            <FlexboxLayout flexDirection="column" justifyContent="center">
-              <Label class="title" text="Botón SOS"></Label>
-              <Label class="description" textWrap="true" text="Espacio para ver los gastos de la municipalidad"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout col="1" justifyContent="center" alignItems="center">
-              <Label class="fas" style="font-size: 30" text="&#xf12a;"></Label>
-            </FlexboxLayout>
-          </GridLayout>
-        </StackLayout>
-        <StackLayout class="singleSection">
-          <GridLayout columns="*, 80%" height="80">
-            <FlexboxLayout flexDirection="column" justifyContent="center">
-              <Label class="title" text="Acerca de La Molina"></Label>
-              <Label class="description" textWrap="true" text="Espacio para ver los gastos de la municipalidad"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout col="1" justifyContent="center" alignItems="center">
-              <Label class="fas" style="font-size: 30" text="&#xf66f;"></Label>
-            </FlexboxLayout>
-          </GridLayout>
-        </StackLayout>
-        <StackLayout class="singleSection">
-          <GridLayout columns="*, 80%" height="80" (tap)="navigateToCategory()">
-            <FlexboxLayout flexDirection="column" justifyContent="center">
-              <Label class="title" text="Contraloría Vecinal"></Label>
-              <Label class="description" textWrap="true" text="Espacio para ver los gastos de la municipalidad"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout col="1" justifyContent="center" alignItems="center">
-              <Label class="fas" style="font-size: 30" text="&#xf4c0;"></Label>
-            </FlexboxLayout>
-          </GridLayout>
-        </StackLayout>
-        <StackLayout class="singleSection">
-          <GridLayout columns="*, 80%" height="80">
-            <FlexboxLayout flexDirection="column" justifyContent="center">
-              <Label class="title" text="Quejas y Sugerencias"></Label>
-              <Label class="description" textWrap="true" text="Espacio para ver los gastos de la municipalidad"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout col="1" justifyContent="center" alignItems="center">
-              <Label class="fas" style="font-size: 30" text="&#xf128;"></Label>
-            </FlexboxLayout>
-          </GridLayout>
-        </StackLayout>
-        <StackLayout class="singleSection">
-          <GridLayout columns="*, 80%" height="80">
-            <FlexboxLayout flexDirection="column" justifyContent="center">
-              <Label class="title" text="Datos Útiles"></Label>
-              <Label class="description" textWrap="true" text="Espacio para ver los gastos de la municipalidad"></Label>
-            </FlexboxLayout>
-            <FlexboxLayout col="1" justifyContent="center" alignItems="center">
-              <Label class="fas" style="font-size: 30" text="&#xf129;"></Label>
-            </FlexboxLayout>
-          </GridLayout>
-        </StackLayout>
-      </StackLayout>
-    </ScrollView>
-  </StackLayout>
-</GridLayout>
+<StackLayout>
+	<StackLayout class="titleLayout">
+	  <Label text="Municipalidad de La Molina" horizontalAlignment="center" class="title" margin="20"></Label>
+	</StackLayout>
+	<GridLayout rows="*,60" class="splashScreen">
+	  <ScrollView row="0" scrollBarIndicatorVisible="false">
+	    <StackLayout margin="0 15">
+	      <StackLayout class="singleSection">
+	        <GridLayout columns="*, 80%" height="80">
+	          <FlexboxLayout flexDirection="column" justifyContent="center">
+	            <Label class="title" text="Acerca de La Molina"></Label>
+	            <Label class="description" textWrap="true" text="Espacio para ver los gastos de la municipalidad"></Label>
+	          </FlexboxLayout>
+	          <FlexboxLayout col="1" justifyContent="center" alignItems="center">
+	            <Label class="fas" style="font-size: 30" text="&#xf66f;"></Label>
+	          </FlexboxLayout>
+	        </GridLayout>
+	      </StackLayout>
+	      <StackLayout class="singleSection">
+	        <GridLayout columns="*, 80%" height="80" (tap)="navigateToCategory()">
+	          <FlexboxLayout flexDirection="column" justifyContent="center">
+	            <Label class="title" text="Contraloría Vecinal"></Label>
+	            <Label class="description" textWrap="true" text="Espacio para ver los gastos de la municipalidad"></Label>
+	          </FlexboxLayout>
+	          <FlexboxLayout col="1" justifyContent="center" alignItems="center">
+	            <Label class="fas" style="font-size: 30" text="&#xf4c0;"></Label>
+	          </FlexboxLayout>
+	        </GridLayout>
+	      </StackLayout>
+	      <StackLayout class="singleSection">
+	        <GridLayout columns="*, 80%" height="80">
+	          <FlexboxLayout flexDirection="column" justifyContent="center">
+	            <Label class="title" text="Quejas y Sugerencias"></Label>
+	            <Label class="description" textWrap="true" text="Espacio para ver los gastos de la municipalidad"></Label>
+	          </FlexboxLayout>
+	          <FlexboxLayout col="1" justifyContent="center" alignItems="center">
+	            <Label class="fas" style="font-size: 30" text="&#xf128;"></Label>
+	          </FlexboxLayout>
+	        </GridLayout>
+	      </StackLayout>
+	      <StackLayout class="singleSection">
+	        <GridLayout columns="*, 80%" height="80">
+	          <FlexboxLayout flexDirection="column" justifyContent="center">
+	            <Label class="title" text="Datos Útiles"></Label>
+	            <Label class="description" textWrap="true" text="Espacio para ver los gastos de la municipalidad"></Label>
+	          </FlexboxLayout>
+	          <FlexboxLayout col="1" justifyContent="center" alignItems="center">
+	            <Label class="fas" style="font-size: 30" text="&#xf129;"></Label>
+	          </FlexboxLayout>
+	        </GridLayout>
+	      </StackLayout>
+	    </StackLayout>
+	  </ScrollView>
+	  <StackLayout row="1" class="sosSection" height="50">
+	    <Label class="title" text="Botón SOS"></Label>
+	  </StackLayout>
+	</GridLayout>
+</StackLayout>

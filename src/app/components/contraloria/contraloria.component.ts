@@ -16,6 +16,7 @@ export class ContraloriaComponent implements OnInit {
   public gastos = [];
   public isBusy = true;
   public title: string;
+  public contraloriaDetail = 'Espacio donde ver los gastos de la municipalidad';
 
   constructor(page: Page, private angRouter: Router, private router: RouterExtensions, private data: DataService) {
     page.actionBarHidden = true;
@@ -36,6 +37,10 @@ export class ContraloriaComponent implements OnInit {
       this.gastos = str.filter((s,i) => i !== 0);
       this.isBusy = false;
     });
+  }
+
+  public formatMoney(number: number) {
+    return `S./ ${number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
   }
 
   public goToExpense(gasto: Gasto) {

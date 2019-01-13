@@ -14,12 +14,10 @@
           </FlexboxLayout>
           <Label margin="20 20 10" fontSize="16" text="Estructura del gasto" textWrap="true" color="#666"></Label>
           <StackLayout class="main-expenses">
-            <!-- <RL:Ripple rippleColor="#000000" (tap)="goToExpense(gasto)"> -->
-              <StackLayout class="single-expense" *ngFor="let gasto of gastos" (tap)="goToExpense(gasto)">
-                <Label color="#50a8d6" fontSize="14" fontWeight="bold" [text]="gasto.nombre | titlecase" textWrap="true"></Label>
-                <Label marginTop="10px" fontSize="14"  [text]="getExpense(gasto.devengado)" color="#666" textWrap="true"></Label>
-              </StackLayout>
-            <!-- </RL:Ripple> -->
+            <StackLayout class="single-expense" *ngFor="let gasto of gastos" (tap)="goToExpense(gasto)">
+              <Label color="#50a8d6" fontSize="14" fontWeight="bold" [text]="gasto.nombre | titlecase" textWrap="true"></Label>
+              <Label marginTop="10px" fontSize="14"  [text]="getExpense(gasto.devengado)" color="#666" textWrap="true"></Label>
+            </StackLayout>
           </StackLayout>
           <Label margin="20 20 10" fontSize="16" text="Detalle del gasto" textWrap="true" color="#666"></Label>
           <FlexBoxLayout class="filter-container">
