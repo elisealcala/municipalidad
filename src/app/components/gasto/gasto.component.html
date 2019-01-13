@@ -1,7 +1,7 @@
 <StackLayout class="splashScreen">
   <FlexboxLayout padding="5 0" class="gastoTopBar" flexDirection="row" width="100%" alignItems="center">
     <Label class="fas" padding="10 20" style="font-size: 20" text="&#xf104;" (tap)="goBack()" color="#fff"></Label>
-    <Label textWrap="false" text="Contraloría Vecinal" fontSize="14" textAlignment="center"></Label>
+    <Label textWrap="false" text="Contraloría Vecinal" fontSize="16" textAlignment="center"></Label>
   </FlexboxLayout>
   <StackLayout>
     <ScrollView scrollBarIndicatorVisible="false">
@@ -14,10 +14,12 @@
           </FlexboxLayout>
           <Label margin="20 20 10" fontSize="16" text="Estructura del gasto" textWrap="true" color="#666"></Label>
           <StackLayout class="main-expenses">
-            <StackLayout class="single-expense" *ngFor="let gasto of gastos" (tap)="goToExpense(gasto)">
-              <Label color="#50a8d6" fontSize="14" fontWeight="bold" [text]="gasto.nombre | titlecase" textWrap="true"></Label>
-              <Label marginTop="10px" fontSize="14"  [text]="getExpense(gasto.devengado)" color="#666" textWrap="true"></Label>
-            </StackLayout>
+            <!-- <RL:Ripple rippleColor="#000000" (tap)="goToExpense(gasto)"> -->
+              <StackLayout class="single-expense" *ngFor="let gasto of gastos" (tap)="goToExpense(gasto)">
+                <Label color="#50a8d6" fontSize="14" fontWeight="bold" [text]="gasto.nombre | titlecase" textWrap="true"></Label>
+                <Label marginTop="10px" fontSize="14"  [text]="getExpense(gasto.devengado)" color="#666" textWrap="true"></Label>
+              </StackLayout>
+            <!-- </RL:Ripple> -->
           </StackLayout>
           <Label margin="20 20 10" fontSize="16" text="Detalle del gasto" textWrap="true" color="#666"></Label>
           <FlexBoxLayout class="filter-container">
@@ -47,7 +49,10 @@
           </StackLayout>
           <StackLayout *ngIf="filterSelected === 'anual'" class="main-expenses">
             <FlexBoxLayout justifyContent="space-between" class="single-expense" *ngFor="let expense of currentExpenseKeys">
-              <Label fontSize="14" color="#50a8d6" fontWeight="bold" [text]="expense | uppercase"></Label>
+              <FlexBoxLayout alignItems="center">
+                <Label fontSize="14" color="#50a8d6" fontWeight="bold" [text]="expense | uppercase"></Label>
+                <Label marginLeft="10" class="fas" style="font-size: 16" text="&#xf059;" color="#50a8d6" (tap)="openInformation(expense)"></Label>
+              </FlexBoxLayout>
               <Label fontSize="14" color="#666" [text]="getExpense(currentExpense[expense], expense)"></Label>
             </FlexBoxLayout>
           </StackLayout>

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes } from '@angular/router';
+import { Routes, Router } from '@angular/router';
 import { NativeScriptRouterModule } from 'nativescript-angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ContraloriaComponent } from './components/contraloria/contraloria.component';
@@ -25,4 +25,12 @@ const routes: Routes = [
   imports: [NativeScriptRouterModule.forRoot(routes)],
   exports: [NativeScriptRouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+
+  constructor(private router: Router) {
+    // override the route reuse strategy
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+  }
+}

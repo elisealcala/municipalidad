@@ -3,6 +3,7 @@ import { request, HttpResponse } from "tns-core-modules/http";
 import { Page } from 'tns-core-modules/ui/page/page';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { alert } from "tns-core-modules/ui/dialogs";
 import { DataService } from '../../services/data.service';
 import { Gasto } from '../../models';
 
@@ -31,16 +32,27 @@ export class GastoComponent implements OnInit {
     private router: RouterExtensions,
   ) {
     page.actionBarHidden = true;
-    angRouter.events.forEach((event) => {
-      if (event instanceof NavigationEnd) {
-        this.data.currentTitle.subscribe(title => this.title = title);
-      }
+    const elem = ['id', 'nombre', 'descripcion', 'idRef'];
+    route.params.subscribe(params => {
+      this.id = params.id;
+      request({
+        url: `https://consulta-amigable-apirest.herokuapp.com/api/gastos/${this.id}`,
+        method: "GET"
+      }).then((response: HttpResponse) => {
+        const str = response.content.toJSON();
+        console.log(str);
+        this.currentExpense = str[0];
+        this.title = this.currentExpense.nombre;
+        this.gastos = str.filter((s, i) => i !== 0);
+        this.isBusy = false;
+        this.currentExpenseKeys = Object.keys(this.currentExpense).filter(c => !elem.includes(c));
+        console.log(this.currentExpenseKeys);
+      });
     });
   }
 
   ngOnInit(): void {
-    // this.data.currentTitle.subscribe(title => this.title = title.length > 30 ? `${title.substr(0, 30)}...` : title);
-    // this.data.currentExpense.subscribe(expense => this.currentExpense = expense);
+    this.isBusy = true;
     const elem = ['id', 'nombre', 'descripcion', 'idRef'];
     this.route.params.subscribe(params => {
       this.id = params.id;
@@ -120,10 +132,28 @@ export class GastoComponent implements OnInit {
     });
   }
 
+  public openInformation() {
+    alert({
+      title: "Your title",
+      message: "Your message",
+      okButtonText: "Your button text"
+    }).then(() => {
+      console.log("Dialog closed!");
+    })
+  }
+
   public goToExpense(gasto:Gasto) {
     this.data.changeTitle(gasto.nombre);
     this.data.changeData(gasto);
-    this.router.navigate(['gasto', gasto.id]);
+    this.router.navigate(['gasto', gasto.id], {
+      // animated: true,
+      // transition:
+      // {
+      //   name: 'slide',
+      //   duration: 300,
+      //   curve: 'linear'
+      // }
+    });
   }
 
   public goBack() {
