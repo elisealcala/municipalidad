@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Page } from 'tns-core-modules/ui/page/page';
+import { registerElement } from 'nativescript-angular/element-registry';
 import { RouterExtensions } from 'nativescript-angular/router';
+import { CardView } from 'nativescript-cardview';
 
 @Component({
   selector: 'ns-informante',
@@ -43,7 +45,9 @@ export class InformanteComponent implements OnInit {
   }
 
   ngOnInit() {
+    registerElement('CardView', () => CardView);
   }
+
 
   public goBack() {
     this.router.back();

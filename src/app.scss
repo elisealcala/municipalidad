@@ -136,17 +136,16 @@ $accent: #09f;
 }
 
 .boxCard {
-  background: rgba(176, 222, 253, 0.4);;
-  border-radius: 10 10 10 10;
-  box-shadow: 1px 1px 1px #eeeeee;
-  padding: 30 20;
+  background: white;
   margin: 10;
-  height: 150;
   width: 40%;
-  text-align: center;
-  .title {
-    font-size: 16px;
-    color: #0092CB;
-    font-weight: bold;
+  .card {
+    padding: 25 20;
+    text-align: center;
+    .title {
+      font-size: 13px;
+      line-height: 4px;
+      color: #0092CB;
+    }
   }
 }
