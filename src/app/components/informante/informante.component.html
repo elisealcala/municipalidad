@@ -6,7 +6,7 @@
   <ScrollView orientation="vertical" scrollBarIndicatorVisible="false">
     <FlexboxLayout flexWrap="wrap" justifyContent="center" padding="10 0">
       <FlexboxLayout *ngFor="let report of reports" class="boxCard" [nsRouterLink]="report.route" flexDirection="column" alignItems="center">
-        <Label class="fas" style="font-size: 20" text="{{ report.icon }}"></Label>
+        <Label class="fas" style="font-size: 25" text="{{ report.icon }}"></Label>
         <Label class="title" marginTop="20" textWrap="true" [text]="report.title"></Label>
       </FlexboxLayout>
     </FlexboxLayout>
