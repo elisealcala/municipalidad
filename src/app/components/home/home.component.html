@@ -5,50 +5,17 @@
 	<GridLayout rows="*,auto" class="splashScreen">
 	  <ScrollView row="0" scrollBarIndicatorVisible="false">
 	    <StackLayout margin="0 15" padding="10 0">
-	      <Button class="singleSection" height="80">
-	        <GridLayout columns="*, 80%">
-	          <FlexboxLayout flexDirection="column" justifyContent="center">
-	            <Label class="title" text="Acerca de La Molina"></Label>
-	            <Label class="description" textWrap="true" text="Espacio para ver los gastos de la municipalidad"></Label>
-	          </FlexboxLayout>
-	          <FlexboxLayout col="1" justifyContent="center" alignItems="center">
-	            <Label class="fas" style="font-size: 20" text="&#xf66f;"></Label>
-	          </FlexboxLayout>
-	        </GridLayout>
-	      </Button>
-	      <StackLayout class="singleSection">
-	        <GridLayout columns="*, 80%" height="80" (tap)="navigateToCategory()">
-	          <FlexboxLayout flexDirection="column" justifyContent="center">
-	            <Label class="title" text="Contraloría Vecinal"></Label>
-	            <Label class="description" textWrap="true" text="Espacio para ver los gastos de la municipalidad"></Label>
-	          </FlexboxLayout>
-	          <FlexboxLayout col="1" justifyContent="center" alignItems="center">
-	            <Label class="fas" style="font-size: 30" text="&#xf4c0;"></Label>
-	          </FlexboxLayout>
-	        </GridLayout>
-	      </StackLayout>
-	      <StackLayout class="singleSection">
-	        <GridLayout columns="*, 80%" height="80">
-	          <FlexboxLayout flexDirection="column" justifyContent="center">
-	            <Label class="title" text="Quejas y Sugerencias"></Label>
-	            <Label class="description" textWrap="true" text="Espacio para ver los gastos de la municipalidad"></Label>
-	          </FlexboxLayout>
-	          <FlexboxLayout col="1" justifyContent="center" alignItems="center">
-	            <Label class="fas" style="font-size: 30" text="&#xf128;"></Label>
-	          </FlexboxLayout>
-	        </GridLayout>
-	      </StackLayout>
-	      <StackLayout class="singleSection">
-	        <GridLayout columns="*, 80%" height="80">
-	          <FlexboxLayout flexDirection="column" justifyContent="center">
-	            <Label class="title" text="Datos Útiles"></Label>
-	            <Label class="description" textWrap="true" text="Espacio para ver los gastos de la municipalidad"></Label>
-	          </FlexboxLayout>
-	          <FlexboxLayout col="1" justifyContent="center" alignItems="center">
-	            <Label class="fas" style="font-size: 30" text="&#xf129;"></Label>
-	          </FlexboxLayout>
-	        </GridLayout>
-	      </StackLayout>
+        <StackLayout *ngFor="let section of sections" class="singleSection">
+          <FlexboxLayout [nsRouterLink]="section.route">
+            <FlexboxLayout flexDirection="column" justifyContent="center" width="80%">
+              <Label class="title" [text]="section.title"></Label>
+              <Label class="description" textWrap="true" [text]="section.description"></Label>
+            </FlexboxLayout>
+            <FlexboxLayout col="1" justifyContent="center" alignItems="center">
+              <Label class="fas" style="font-size: 20" text="{{ section.icon }}"></Label>
+            </FlexboxLayout>
+          </FlexboxLayout>
+        </StackLayout>
 	    </StackLayout>
 	  </ScrollView>
 	  <FlexboxLayout alignItems="center" justifyContent="center" row="1" class="sosSection" height="40">

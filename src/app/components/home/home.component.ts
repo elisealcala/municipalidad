@@ -10,6 +10,35 @@ import { DataService } from '../../services/data.service';
   moduleId: module.id
 })
 export class HomeComponent implements OnInit {
+
+  public sections = [
+    {
+      title: 'Acerca de La Molina',
+      description: 'Detalles del distrito de La Molina',
+      icon: '\uf66f',
+    },
+    {
+      title: 'Contraloría Vecinal',
+      description: 'Espacio para ver los gastos de la municipalidad',
+      icon: '\uf4c0',
+      route: '../contraloria',
+    },
+    {
+      title: 'Quejas y Sugerencias',
+      description: 'Déjanos tus sugerencias',
+      icon: '\uf128',
+    },
+    {
+      title: 'Datos Útiles',
+      description: 'Teléfonos y datos importantes',
+      icon: '\uf129',
+    },
+    {
+      title: 'Informante',
+      description: 'Informa sobre los servicios',
+      icon: '\uf06e',
+    }
+  ]
   
   constructor(private router: Router, page: Page, private data: DataService) {
     page.actionBarHidden = true;
