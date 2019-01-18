@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ContraloriaComponent } from "./components/contraloria/contraloria.component";
 import { DataService } from './services/data.service'
 import { GastoComponent } from "./components/gasto/gasto.component";
+import { InformanteComponent } from './components/informante/informante.component';
 
 @NgModule({
     bootstrap: [
@@ -21,6 +22,7 @@ import { GastoComponent } from "./components/gasto/gasto.component";
         HomeComponent,
         ContraloriaComponent,
         GastoComponent,
+        InformanteComponent,
     ],
     schemas: [
         NO_ERRORS_SCHEMA

@@ -1,0 +1,14 @@
+<StackLayout>
+  <FlexboxLayout padding="5 0" flexDirection="row" width="100%" alignItems="center">
+    <Label class="fas" padding="10 20" style="font-size: 20" text="&#xf104;" (tap)="goBack()"></Label>
+    <Label textWrap="false" marginLeft="28%" text="Informante" fontSize="14" textAlignment="center"></Label>
+  </FlexboxLayout>
+  <ScrollView orientation="vertical" scrollBarIndicatorVisible="false">
+    <FlexboxLayout flexWrap="wrap" justifyContent="center" padding="10 0">
+      <FlexboxLayout *ngFor="let report of reports" class="boxCard" [nsRouterLink]="report.route" flexDirection="column" alignItems="center">
+        <Label class="fas" style="font-size: 20" text="{{ report.icon }}"></Label>
+        <Label class="title" marginTop="20" textWrap="true" [text]="report.title"></Label>
+      </FlexboxLayout>
+    </FlexboxLayout>
+  </ScrollView>
+</StackLayout>

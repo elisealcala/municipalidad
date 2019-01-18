@@ -4,6 +4,7 @@ import { NativeScriptRouterModule } from 'nativescript-angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ContraloriaComponent } from './components/contraloria/contraloria.component';
 import { GastoComponent } from './components/gasto/gasto.component';
+import { InformanteComponent } from './components/informante/informante.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'gasto/:id',
     component: GastoComponent,
+  },
+  {
+    path: 'informante',
+    component: InformanteComponent
   }
 ];
 

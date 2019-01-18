@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
       title: 'Informante',
       description: 'Informa sobre los servicios',
       icon: '\uf06e',
+      route: '../informante'
     }
   ]
   

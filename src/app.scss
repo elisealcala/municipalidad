@@ -134,3 +134,19 @@ $accent: #09f;
   background: #0092CB;
   color: white;
 }
+
+.boxCard {
+  background: rgba(176, 222, 253, 0.4);;
+  border-radius: 10 10 10 10;
+  box-shadow: 1px 1px 1px #eeeeee;
+  padding: 30 20;
+  margin: 10;
+  height: 150;
+  width: 40%;
+  text-align: center;
+  .title {
+    font-size: 16px;
+    color: #0092CB;
+    font-weight: bold;
+  }
+}

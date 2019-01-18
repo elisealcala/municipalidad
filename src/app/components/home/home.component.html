@@ -3,10 +3,23 @@
 	  <Label text="Municipalidad de La Molina" horizontalAlignment="center" class="title"></Label>
 	</FlexboxLayout>
 	<GridLayout rows="*,auto" class="splashScreen">
+    <!-- <ListView row="0" [items]="sections" style="height:1250px" separatorColor="transparent">
+      <ng-template let-section="item">
+        <FlexboxLayout class="singleSection" [nsRouterLink]="section.route">
+          <FlexboxLayout flexDirection="column" justifyContent="center" width="80%">
+            <Label class="title" [text]="section.title"></Label>
+            <Label class="description" textWrap="true" [text]="section.description"></Label>
+          </FlexboxLayout>
+          <FlexboxLayout col="1" justifyContent="center" alignItems="center">
+            <Label class="fas" style="font-size: 20" text="{{ section.icon }}"></Label>
+          </FlexboxLayout>
+        </FlexboxLayout>
+      </ng-template>
+    </ListView> -->
 	  <ScrollView row="0" scrollBarIndicatorVisible="false">
 	    <StackLayout margin="0 15" padding="10 0">
         <StackLayout *ngFor="let section of sections" class="singleSection">
-          <FlexboxLayout [nsRouterLink]="section.route">
+          <FlexboxLayout [nsRouterLink]="section.route" justifyContent="space-between">
             <FlexboxLayout flexDirection="column" justifyContent="center" width="80%">
               <Label class="title" [text]="section.title"></Label>
               <Label class="description" textWrap="true" [text]="section.description"></Label>
