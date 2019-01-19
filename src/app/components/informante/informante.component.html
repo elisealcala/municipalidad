@@ -1,8 +1,9 @@
 <StackLayout>
-  <FlexboxLayout padding="5 0" flexDirection="row" width="100%" alignItems="center">
-    <Label class="fas" padding="10 20" style="font-size: 20" text="&#xf104;" (tap)="goBack()"></Label>
-    <Label textWrap="false" marginLeft="25%" text="Informante" fontSize="14" textAlignment="center"></Label>
-  </FlexboxLayout>
+  <StackLayout class="informesNav" (tap)="onTap(lbl)" #lbl>
+    <Label class="fas" color="#fff" padding="10 20" style="font-size: 20" text="&#xf104;" (tap)="goBack()"></Label>
+    <Label textWrap="false" marginTop="20" color="#fff" text="INFORMANTE" fontSize="16" textAlignment="center" fontWeight="bold"></Label>
+    <Label textWrap="false" width="90%" marginTop="10 auto" color="#fff" text="Observaciones sobre servicios de la municipalidad" fontSize="14" textAlignment="center"></Label>
+  </StackLayout>
   <ScrollView orientation="vertical" scrollBarIndicatorVisible="false">
     <FlexboxLayout flexWrap="wrap" justifyContent="center" padding="10 0">
       <CardView class="boxCard" margin="10" elevation="5" shadowOpacity="0.2" ripple="true" radius="10" *ngFor="let report of reports" shadowColor="#0092CB" [nsRouterLink]="report.route">
