@@ -4,6 +4,7 @@ import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 import { registerElement } from 'nativescript-angular/element-registry';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { CardView } from 'nativescript-cardview';
+import { ScrollEventData } from "tns-core-modules/ui/scroll-view";
 import { defer, interval, animationFrameScheduler } from 'rxjs';
 import { map, takeWhile } from 'rxjs/operators';
 
@@ -48,8 +49,18 @@ export class InformanteComponent implements OnInit {
     {
       title: 'Iluminación',
       icon: '\uf66f',
+    },
+    {
+      title: 'Ruidos Molestos',
+      icon: '\uf66f',
+    },
+    {
+      title: 'Iluminación',
+      icon: '\uf66f',
     }
-  ]
+  ];
+
+  public status = "not scrolling";
 
 
   constructor(page: Page, private router: RouterExtensions) {
@@ -64,6 +75,22 @@ export class InformanteComponent implements OnInit {
     durationForAnimation(2000).pipe(map(elasticOut), map(amount(50))).subscribe((heightValue) => {
       lbl.style.height = heightValue;
     });
+  }
+
+  public onScroll(args: ScrollEventData, lbl: StackLayout) {
+    this.status = "scrolling";
+
+    setTimeout(() => {
+      this.status = "not scrolling";
+    }, 300);
+
+    if (args.scrollY > 0 && args.scrollY < 125) {
+      durationForAnimation(2000).pipe(map(elasticOut), map(amount(50))).subscribe((heightValue) => {
+        lbl.style.height = heightValue;
+      });
+    }
+
+    console.log("scrollY: " + args.scrollY);
   }
 
 
