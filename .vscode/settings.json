@@ -2,5 +2,12 @@
   "files.exclude": {
     "**/*.js": true,
     "**/*.css": true,
-  }
+  },
+  "editor.formatOnSave": true,
+  "[typescript]": {
+    "editor.formatOnSave": false
+  },
+  "tslint.autoFixOnSave": true,
+  "tslint.alwaysShowStatus": true,
+  "tslint.jsEnable": false,
 }
