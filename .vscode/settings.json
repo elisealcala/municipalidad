@@ -12,9 +12,5 @@
   },
   "tslint.autoFixOnSave": true,
   "tslint.alwaysShowStatus": true,
-  "tslint.jsEnable": false,
-  "prettier.singleQuote": true,
-  "prettier.semi": true,
-  "prettier.printWidth": 120,
-  "prettier.trailingComma": "es5"
+  "tslint.jsEnable": false
 }

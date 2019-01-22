@@ -21,5 +21,5 @@
     "no-implicit-dependencies": false,
     "quotemark": [true, "single", "jsx-double"]
   },
-  "rulesDirectory": []
+  "rulesDirectory": ["tslint-plugin-prettier"]
 }
