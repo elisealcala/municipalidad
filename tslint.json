@@ -3,22 +3,23 @@
   "extends": ["tslint:latest", "tslint-config-prettier"],
   "jsRules": {},
   "rules": {
+    "prettier": [
+      true,
+      {
+        "semi": true,
+        "singleQuote": true,
+        "printWidth": 120,
+        "jsxBracketSameLine": false,
+        "trailingComma": "all",
+        "arrowParens": "avoid"
+      }
+    ],
     "ordered-imports": false,
     "no-console": false,
     "object-literal-sort-keys": false,
     "no-submodule-imports": false,
     "no-implicit-dependencies": false,
-    "quotemark": [true, "single", "jsx-double"],
-    "prettier": [
-      true,
-      {
-        "singleQuote": true,
-        "printWidth": 70,
-        "jsxBracketSameLine": false,
-        "trailingComma": "all",
-        "arrowParens": "avoid"
-      }
-    ]
+    "quotemark": [true, "single", "jsx-double"]
   },
   "rulesDirectory": []
 }

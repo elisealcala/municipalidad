@@ -1,13 +1,20 @@
 {
   "files.exclude": {
     "**/*.js": true,
-    "**/*.css": true,
+    "**/*.css": true
   },
   "editor.formatOnSave": true,
   "[typescript]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true
   },
   "tslint.autoFixOnSave": true,
   "tslint.alwaysShowStatus": true,
   "tslint.jsEnable": false,
+  "prettier.singleQuote": true,
+  "prettier.semi": true,
+  "prettier.printWidth": 120,
+  "prettier.trailingComma": "es5"
 }
