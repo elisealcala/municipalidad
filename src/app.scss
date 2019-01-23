@@ -1,7 +1,7 @@
 // Import the theme’s variables. If you’re using a color scheme
 // other than “light”, switch the path to the alternative scheme,
 // for example '~nativescript-theme-core/scss/dark'.
-@import '~nativescript-theme-core/scss/light';
+@import "~nativescript-theme-core/scss/light";
 
 // Customize any of the theme’s variables here, for instance $btn-color: red;
 
@@ -9,7 +9,7 @@ $primary: #fff;
 $accent: #09f;
 
 // Import the theme’s main ruleset.
-@import '~nativescript-theme-core/scss/index';
+@import "~nativescript-theme-core/scss/index";
 
 // Place any CSS rules you want to apply on both iOS and Android here.
 // This is where the vast majority of your CSS code goes.
@@ -20,7 +20,7 @@ $accent: #09f;
 }
 
 .titleLayout {
-  background-color: rgb(113, 177, 3); 
+  background-color: rgb(113, 177, 3);
   color: white;
   .title {
     font-size: 16;
@@ -37,7 +37,7 @@ $accent: #09f;
   padding: 20;
   border-radius: 10;
   .title {
-    color: #96C93D;
+    color: #96c93d;
     font-size: 16;
     font-weight: 800;
     margin-bottom: 6;
@@ -46,19 +46,19 @@ $accent: #09f;
     font-size: 12;
     color: #666;
   }
-  &:pressed{
-    background-color:#00A3FF;
+  &:pressed {
+    background-color: #00a3ff;
   }
 }
 
 .far {
   font-family: Font Awesome 5 Free, fa-regular-400;
-  font-weight: 400; 
+  font-weight: 400;
 }
 
 .fab {
   font-family: Font Awesome 5 Brands, fa-brands-400;
-  font-weight: 400; 
+  font-weight: 400;
 }
 
 .fas {
@@ -71,10 +71,10 @@ $accent: #09f;
 
 .topView {
   background: #fff;
-  color: #96C93D;
+  color: #96c93d;
   margin-bottom: 15;
   .fas {
-    color: #96C93D;
+    color: #96c93d;
   }
 }
 
@@ -97,7 +97,7 @@ $accent: #09f;
     padding: 12 10;
     border-top-color: rgba(176, 222, 253, 0.733);
     border-top-width: 0.5px;
-    &:nth-child(1){
+    &:nth-child(1) {
       border-top-width: 0px;
       border-top-color: white;
     }
@@ -105,7 +105,7 @@ $accent: #09f;
 }
 
 .sosSection {
-  background: #EE4D4D;
+  background: #ee4d4d;
   color: white;
   text-align: center;
   border-radius: 10 10 10 10;
@@ -132,7 +132,7 @@ $accent: #09f;
 }
 
 .gastoTopBar {
-  background: #0092CB;
+  background: #0092cb;
   color: white;
 }
 
@@ -146,7 +146,7 @@ $accent: #09f;
     .title {
       font-size: 13px;
       line-height: 4px;
-      color: #0092CB;
+      color: #0092cb;
     }
   }
 }
@@ -154,6 +154,7 @@ $accent: #09f;
 .informesNav {
   background-image: url("~/app/img/informante.png");
   background-repeat: no-repeat;
+  background-size: cover;
   height: 170;
   flex-direction: column;
 }
@@ -166,7 +167,7 @@ $accent: #09f;
 
 .textLabel {
   margin-top: 0;
-  font-weight: regular;
+  font-weight: normal;
   font-size: 14px;
 }
 

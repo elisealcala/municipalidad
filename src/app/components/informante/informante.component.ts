@@ -7,6 +7,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import { ScrollEventData } from 'tns-core-modules/ui/scroll-view';
 import { defer, interval, animationFrameScheduler } from 'rxjs';
 import { map, takeWhile } from 'rxjs/operators';
+import { SwipeGestureEventData } from 'tns-core-modules/ui/gestures';
 
 const timeElapsed = defer(() => {
   const start = animationFrameScheduler.now();
@@ -21,6 +22,11 @@ const durationForAnimation = totalMs =>
 const amount = (d, h) => t => {
   if (d * ((h / d) * t) < h - d) {
     return h - d * ((h / d) * t);
+  }
+};
+const amountTwo = (height: number, full: number) => t => {
+  if (height * ((full / height) * t) < full) {
+    return height * ((full / height) * t);
   }
 };
 // const elasticOut = t => Math.sin((-13.0 * (t + 1.0) * Math.PI) / 2) * Math.pow(2.0, -10.0 * t) + 1.0;
@@ -84,7 +90,7 @@ export class InformanteComponent implements OnInit {
     setTimeout(() => {
       this.status = 'not scrolling';
     }, 300);
-
+    console.log(args.scrollY);
     if (args.scrollY > 0 && args.scrollY < 125 && !this.isHide) {
       durationForAnimation(500)
         .pipe(
@@ -96,6 +102,28 @@ export class InformanteComponent implements OnInit {
           this.isHide = true;
         });
     }
+
+    if (args.scrollY < 0 && args.scrollY > -125 && this.isHide) {
+      durationForAnimation(500)
+        .pipe(
+          // map(elasticOut),
+          map(amountTwo(56, 170)),
+        )
+        .subscribe(heightValue => {
+          lbl.style.height = heightValue;
+          this.isHide = false;
+        });
+    }
+  }
+
+  public onSwipe(args: SwipeGestureEventData) {
+    console.log('Swipe!');
+    console.log('Object that triggered the event: ' + args.object);
+    console.log('View that triggered the event: ' + args.view);
+    console.log('Event name: ' + args.eventName);
+    console.log('Swipe Direction: ' + args.direction);
+
+    // this.direction = args.direction;
   }
 
   public goBack() {
