@@ -22,41 +22,20 @@
     <ScrollView row="0" scrollBarIndicatorVisible="false">
       <StackLayout margin="0 15" padding="10 0">
         <StackLayout *ngFor="let section of sections" class="singleSection">
-          <FlexboxLayout
-            [nsRouterLink]="section.route"
-            justifyContent="space-between"
-          >
-            <FlexboxLayout
-              flexDirection="column"
-              justifyContent="center"
-              width="80%"
-            >
+          <FlexboxLayout [nsRouterLink]="section.route" justifyContent="space-between">
+            <FlexboxLayout flexDirection="column" justifyContent="center" width="80%">
               <Label class="title" [text]="section.title"></Label>
-              <Label
-                class="description"
-                textWrap="true"
-                [text]="section.description"
-              ></Label>
+              <Label class="description" textWrap="true" [text]="section.description"></Label>
             </FlexboxLayout>
             <FlexboxLayout col="1" justifyContent="center" alignItems="center">
-              <Label
-                class="fas"
-                style="font-size: 20"
-                text="{{ section.icon }}"
-              ></Label>
+              <Label class="fas" style="font-size: 20" text="{{ section.icon }}"></Label>
             </FlexboxLayout>
           </FlexboxLayout>
         </StackLayout>
       </StackLayout>
     </ScrollView>
-    <FlexboxLayout
-      alignItems="center"
-      justifyContent="center"
-      row="1"
-      class="sosSection"
-      height="40"
-      margin="10 15"
-    >
+    <FlexboxLayout alignItems="center" justifyContent="center" row="1" class="sosSection" height="40" margin="10 15"
+      nsRouterLink="../help">
       <Label class="title" text="Botón SOS"></Label>
     </FlexboxLayout>
   </GridLayout>

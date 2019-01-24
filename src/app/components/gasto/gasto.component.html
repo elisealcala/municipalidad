@@ -1,6 +1,6 @@
 <StackLayout class="splashScreen">
   <FlexboxLayout padding="5 0" class="gastoTopBar" flexDirection="row" width="100%" alignItems="center">
-    <Label class="fas" padding="10 20" style="font-size: 20" text="&#xf104;" (tap)="goBack()" color="#fff"></Label>
+    <Label class="fas" padding="10 20" style="font-size: 20" text="&#xf060;" (tap)="goBack()" color="#fff"></Label>
     <Label textWrap="false" text="Contraloría Vecinal" fontSize="16" textAlignment="center"></Label>
   </FlexboxLayout>
   <StackLayout>
@@ -16,7 +16,7 @@
           <StackLayout class="main-expenses">
             <StackLayout class="single-expense" *ngFor="let gasto of gastos" (tap)="goToExpense(gasto)">
               <Label color="#50a8d6" fontSize="14" fontWeight="bold" [text]="gasto.nombre | titlecase" textWrap="true"></Label>
-              <Label marginTop="10px" fontSize="14"  [text]="getExpense(gasto.devengado)" color="#666" textWrap="true"></Label>
+              <Label marginTop="10px" fontSize="14" [text]="getExpense(gasto.devengado)" color="#666" textWrap="true"></Label>
             </StackLayout>
           </StackLayout>
           <Label margin="20 20 10" fontSize="16" text="Detalle del gasto" textWrap="true" color="#666"></Label>

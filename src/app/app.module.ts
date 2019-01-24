@@ -10,10 +10,12 @@ import { GastoComponent } from './components/gasto/gasto.component';
 import { InformanteComponent } from './components/informante/informante.component';
 import { AboutComponent } from './components/about/about.component';
 import { AnimationsService } from './services/animation.service';
+import { HelpComponent } from './components/help/help.component';
+import { TNSCheckBoxModule } from 'nativescript-checkbox/angular';
 
 @NgModule({
   bootstrap: [AppComponent],
-  imports: [NativeScriptModule, AppRoutingModule],
+  imports: [NativeScriptModule, AppRoutingModule, TNSCheckBoxModule],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -21,6 +23,7 @@ import { AnimationsService } from './services/animation.service';
     GastoComponent,
     InformanteComponent,
     AboutComponent,
+    HelpComponent,
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [DataService, AnimationsService],

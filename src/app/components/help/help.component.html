@@ -1,0 +1,19 @@
+<StackLayout background="#A5E0B0">
+  <StackLayout *ngIf="timeLeft !== 0">
+    <FlexboxLayout width="100%" alignItems="center" justifyContent="center">
+      <Label color="#EB3C16" [text]="timeLeft" fontSize="80" margin="30 auto"></Label>
+    </FlexboxLayout>
+    <Button text="Cancelar" (tap)="onTap($event)"></Button>
+  </StackLayout>
+  <StackLayout *ngIf="timeLeft === 0">
+    <Label class="fas" padding="10 20" style="font-size: 20" text="&#xf060;" (tap)="onTap($event)"></Label>
+    <FlexboxLayout flexDirection="column" width="100%" alignItems="" padding="30 20">
+      <TextField hint="Número de teléfono" autocorrect="false" class="input input-border"></TextField>
+      <Label text="Tipo de incidente"></Label>
+      <CheckBox text="Robo / Asalto / Secuestro" checked="false"></CheckBox>
+      <CheckBox text="Violencia doméstica" checked="false"></CheckBox>
+      <CheckBox text="Otros" checked="false"></CheckBox>
+      <Button text="Enviar"></Button>
+    </FlexboxLayout>
+  </StackLayout>
+</StackLayout>

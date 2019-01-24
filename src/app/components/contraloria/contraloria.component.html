@@ -1,15 +1,16 @@
 <StackLayout rows="auto, *" class="splashScreen">
   <FlexboxLayout padding="5 0" class="gastoTopBar" flexDirection="row" width="100%" alignItems="center">
-    <Label class="fas" padding="10 20" style="font-size: 20" text="&#xf104;" (tap)="goBack()" color="#fff"></Label>
+    <Label class="fas" padding="10 20" style="font-size: 20" text="&#xf060;" (tap)="goBack()" color="#fff"></Label>
     <Label textWrap="false" text="Contraloría Vecinal" fontSize="16" textAlignment="center"></Label>
   </FlexboxLayout>
   <StackLayout row="1">
     <ScrollView scrollBarIndicatorVisible="false">
       <StackLayout>
         <ActivityIndicator *ngIf="isBusy" [busy]="isBusy" class="activity-indicator"></ActivityIndicator>
-      	<StackLayout *ngIf="!isBusy">
+        <StackLayout *ngIf="!isBusy">
           <FlexboxLayout padding="10 20" class="gastoTopBar" flexDirection="column">
-            <Label margin="0 0 10 0" fontWeight="bold" textWrap="true" text="Detalle de gastos" fontSize="16" horizontalAlignment="center"></Label>
+            <Label margin="0 0 10 0" fontWeight="bold" textWrap="true" text="Detalle de gastos" fontSize="16"
+              horizontalAlignment="center"></Label>
             <Label textWrap="true" fontSize="16" [text]="contraloriaDetail"></Label>
           </FlexboxLayout>
           <StackLayout class="gastoChild" *ngFor="let gasto of gastos" (tap)="goToExpense(gasto)">
@@ -20,4 +21,4 @@
       </StackLayout>
     </ScrollView>
   </StackLayout>
-</StackLayout> 
+</StackLayout>

@@ -6,6 +6,7 @@ import { ContraloriaComponent } from './components/contraloria/contraloria.compo
 import { GastoComponent } from './components/gasto/gasto.component';
 import { InformanteComponent } from './components/informante/informante.component';
 import { AboutComponent } from './components/about/about.component';
+import { HelpComponent } from './components/help/help.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
+  },
+  {
+    path: 'help',
+    component: HelpComponent,
   },
 ];
 

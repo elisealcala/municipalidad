@@ -1,61 +1,17 @@
 <StackLayout (swipe)="onSwipe($event)">
   <FlexboxLayout [ngClass]="{ wrapped: isHide }" class="informesNav" #lbl>
-    <Label
-      class="fas"
-      color="#fff"
-      padding="10 20"
-      style="font-size: 20"
-      text="&#xf104;"
-      (tap)="goBack()"
-    ></Label>
-    <Label
-      textWrap="false"
-      color="#fff"
-      text="INFORMANTE"
-      textAlignment="center"
-      [ngClass]="{ textLabel: isHide, textFull: !isHide }"
-    ></Label>
-    <Label
-      *ngIf="!isHide"
-      textWrap="false"
-      width="90%"
-      marginTop="10 auto"
-      color="#fff"
-      text="Observaciones sobre servicios de la municipalidad"
-      fontSize="14"
-      textAlignment="center"
-    ></Label>
+    <Label class="fas" color="#fff" padding="10 20" style="font-size: 20" text="&#xf060;" (tap)="goBack()"></Label>
+    <Label textWrap="false" color="#fff" text="INFORMANTE" textAlignment="center" [ngClass]="{ textLabel: isHide, textFull: !isHide }"></Label>
+    <Label *ngIf="!isHide" textWrap="false" width="90%" marginTop="10 auto" color="#fff" text="Observaciones sobre servicios de la municipalidad"
+      fontSize="14" textAlignment="center"></Label>
   </FlexboxLayout>
-  <ScrollView
-    orientation="vertical"
-    scrollBarIndicatorVisible="false"
-    (scroll)="onScroll($event, lbl)"
-    (swipe)="onSwipe($event)"
-  >
+  <ScrollView orientation="vertical" scrollBarIndicatorVisible="false" (scroll)="onScroll($event, lbl)" (swipe)="onSwipe($event)">
     <FlexboxLayout flexWrap="wrap" justifyContent="center" padding="10 0">
-      <CardView
-        class="boxCard"
-        margin="10"
-        elevation="5"
-        shadowOpacity="0.2"
-        ripple="true"
-        radius="10"
-        *ngFor="let report of reports"
-        shadowColor="#0092CB"
-        [nsRouterLink]="report.route"
-      >
+      <CardView class="boxCard" margin="10" elevation="5" shadowOpacity="0.2" ripple="true" radius="10" *ngFor="let report of reports"
+        shadowColor="#0092CB" [nsRouterLink]="report.route">
         <StackLayout class="card">
-          <Label
-            class="fas"
-            style="font-size: 20; color: #0092CB"
-            text="{{ report.icon }}"
-          ></Label>
-          <Label
-            class="title"
-            marginTop="20"
-            textWrap="true"
-            [text]="report.title | uppercase"
-          ></Label>
+          <Label class="fas" style="font-size: 20; color: #0092CB" text="{{ report.icon }}"></Label>
+          <Label class="title" marginTop="20" textWrap="true" [text]="report.title | uppercase"></Label>
         </StackLayout>
       </CardView>
     </FlexboxLayout>
