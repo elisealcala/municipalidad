@@ -1,32 +1,28 @@
-import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { ContraloriaComponent } from "./components/contraloria/contraloria.component";
-import { DataService } from './services/data.service'
-import { GastoComponent } from "./components/gasto/gasto.component";
+import { ContraloriaComponent } from './components/contraloria/contraloria.component';
+import { DataService } from './services/data.service';
+import { GastoComponent } from './components/gasto/gasto.component';
 import { InformanteComponent } from './components/informante/informante.component';
+import { AboutComponent } from './components/about/about.component';
+import { AnimationsService } from './services/animation.service';
 
 @NgModule({
-    bootstrap: [
-        AppComponent
-    ],
-    imports: [
-        NativeScriptModule,
-        AppRoutingModule
-    ],
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        ContraloriaComponent,
-        GastoComponent,
-        InformanteComponent,
-    ],
-    schemas: [
-        NO_ERRORS_SCHEMA
-    ],
-    providers: [DataService]
+  bootstrap: [AppComponent],
+  imports: [NativeScriptModule, AppRoutingModule],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ContraloriaComponent,
+    GastoComponent,
+    InformanteComponent,
+    AboutComponent,
+  ],
+  schemas: [NO_ERRORS_SCHEMA],
+  providers: [DataService, AnimationsService],
 })
-export class AppModule { }
+export class AppModule {}

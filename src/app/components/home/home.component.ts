@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Page } from 'tns-core-modules/ui/page/page';
+import { isIOS } from 'platform';
+import { topmost } from 'ui/frame';
 import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'ns-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  moduleId: module.id
+  moduleId: module.id,
 })
 export class HomeComponent implements OnInit {
-
   public sections = [
     {
       title: 'Acerca de La Molina',
       description: 'Detalles del distrito de La Molina',
       icon: '\uf66f',
+      route: '../about',
     },
     {
       title: 'Contraloría Vecinal',
@@ -37,19 +39,20 @@ export class HomeComponent implements OnInit {
       title: 'Informante',
       description: 'Informa sobre los servicios',
       icon: '\uf06e',
-      route: '../informante'
-    }
-  ]
-  
+      route: '../informante',
+    },
+  ];
+
   constructor(private router: Router, page: Page, private data: DataService) {
-    page.actionBarHidden = true;
+    // if (isIOS) {
+    //   topmost().ios.controller.navigationBar.barStyle = 1;
+    // }
   }
 
-  ngOnInit() {}
+  public ngOnInit() {}
 
   public navigateToCategory() {
-    this.data.changeTitle('Contraloría Vecinal')
+    this.data.changeTitle('Contraloría Vecinal');
     this.router.navigate(['contraloria']);
   }
-
 }
