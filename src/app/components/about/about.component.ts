@@ -5,6 +5,7 @@ import { AnimationCurve } from 'tns-core-modules/ui/enums';
 import { View } from 'tns-core-modules/ui/core/view';
 import { ScrollEventData } from 'tns-core-modules/ui/scroll-view';
 import { GestureEventData } from 'tns-core-modules/ui/gestures';
+import { aboutMock } from './about';
 
 @Component({
   selector: 'ns-about',
@@ -21,8 +22,7 @@ export class AboutComponent implements OnInit {
   @ViewChild('imageContainer') public imageContainerRef: ElementRef;
   @ViewChild('image') public imageRef: ElementRef;
   @ViewChild('title') public titleRef: ElementRef;
-  public description =
-    'The default style looks like Figure 4: icons with black color and white background color. You can use the applications Info.plist file to change the status bar style: Go to the app/App_Resources/iOS folder.Open the Info.plist file. droid with NativeScript. Learn how to programmatically change the status bar text color on iOS and Android as well as the background color. The lesson also covers how to adjust the text color to be dark on Android in cases where the status The default style looks like Figure 4: icons with black color and white background color. You can use the applications Info.plist file to change the status bar style: Go to the app/App_Resources/iOS folder.Open the Info.plist file. droid with NativeScript. Learn how to programmatically change the status bar text color on iOS and Android as well as the background color. The lesson also covers how to adjust the text color to be dark on Android in cases where the status The default style looks like Figure 4: icons with black color and white background color. You can use the applications Info.plist file to change the status bar style: Go to the app/App_Resources/iOS folder.Open the Info.plist file. droid with NativeScript. Learn how to programmatically change the status bar text color on iOS and Android as well as the background color. The lesson also covers how to adjust the text color to be dark on Android in cases where the status The default style looks like Figure 4: icons with black color and white background color. You can use the applications Info.plist file to change the status bar style: Go to the app/App_Resources/iOS folder.Open the Info.plist file. droid with NativeScript. Learn how to programmatically change the status bar text color on iOS and Android as well as the background color. The lesson also covers how to adjust the text color to be dark on Android in cases where the status';
+  public aboutContent = aboutMock;
 
   constructor(private animationsService: AnimationsService, private routerExtensions: RouterExtensions) {
     this.offset = this.animationsService.getAnimationOffset;
