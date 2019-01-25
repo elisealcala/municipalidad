@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Page } from 'tns-core-modules/ui/page/page';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { GestureEventData } from 'tns-core-modules/ui/gestures';
@@ -12,9 +12,16 @@ import { GestureEventData } from 'tns-core-modules/ui/gestures';
 export class HelpComponent implements OnInit {
   public timeLeft: number = 3;
   public interval;
+  public send = false;
+  public confirmation =
+    'Su pedido de auxilio y su ubicación han sido enviados con éxito, en breve nos contactaremos con usted';
 
-  constructor(page: Page, private routerExtensions: RouterExtensions) {
-    page.actionBarHidden = true;
+  @ViewChild('secondTextFieldId') public secondTextFieldId: ElementRef;
+
+  constructor(private page: Page, private routerExtensions: RouterExtensions) {
+    // page.backgroundColor = '#070C1C';
+    page.backgroundSpanUnderStatusBar = true;
+    page.actionBarHidden = false;
   }
 
   public ngOnInit() {
@@ -26,12 +33,19 @@ export class HelpComponent implements OnInit {
       console.log(this.timeLeft);
       if (this.timeLeft > 0) {
         this.timeLeft--;
+      } else {
+        this.secondTextFieldId.nativeElement.focus();
+        this.pauseTimer();
       }
     }, 1000);
   }
 
   public onTap(args: GestureEventData) {
     this.routerExtensions.back();
+  }
+
+  public sendInformation() {
+    this.send = true;
   }
 
   public pauseTimer() {

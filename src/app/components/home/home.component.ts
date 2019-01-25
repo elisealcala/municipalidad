@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Page } from 'tns-core-modules/ui/page/page';
-import { isIOS } from 'platform';
-import { topmost } from 'ui/frame';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -43,11 +41,7 @@ export class HomeComponent implements OnInit {
     },
   ];
 
-  constructor(private router: Router, page: Page, private data: DataService) {
-    // if (isIOS) {
-    //   topmost().ios.controller.navigationBar.barStyle = 1;
-    // }
-  }
+  constructor(private router: Router, page: Page, private data: DataService) {}
 
   public ngOnInit() {}
 
