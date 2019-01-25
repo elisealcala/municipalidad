@@ -34,8 +34,8 @@ export class HelpComponent implements OnInit {
       if (this.timeLeft > 0) {
         this.timeLeft--;
       } else {
-        this.secondTextFieldId.nativeElement.focus();
         this.pauseTimer();
+        this.secondTextFieldId.nativeElement.focus();
       }
     }, 1000);
   }
