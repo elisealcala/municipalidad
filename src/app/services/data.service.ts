@@ -4,20 +4,27 @@ import { Gasto } from '../models';
 
 @Injectable()
 export class DataService {
+  public titleSource = new BehaviorSubject('Título');
+  public newExpense = new BehaviorSubject({});
+  public currentTitle = this.titleSource.asObservable();
+  public currentExpense = this.newExpense.asObservable();
+  public currentPage = 1;
 
-  private titleSource = new BehaviorSubject('Título');
-  private newExpense = new BehaviorSubject({});
-  currentTitle = this.titleSource.asObservable();
-  currentExpense = this.newExpense.asObservable();
+  constructor() {}
 
-  constructor() { }
+  public nextPage() {
+    this.currentPage = this.currentPage + 1;
+  }
 
-  changeTitle(title: string) {
+  public backPage() {
+    this.currentPage = this.currentPage - 1;
+  }
+
+  public changeTitle(title: string) {
     this.titleSource.next(title);
   }
 
-  changeData(data:Gasto) {
+  public changeData(data: Gasto) {
     this.newExpense.next(data);
   }
-
 }
