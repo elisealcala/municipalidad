@@ -1,35 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Page } from 'tns-core-modules/ui/page/page';
-import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
-// import { registerElement } from 'nativescript-angular/element-registry';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
-// import { CardView } from 'nativescript-cardview';
+import { AnimationsService } from '../../services/animation.service';
+import { AnimationCurve } from 'tns-core-modules/ui/enums';
+import { View } from 'tns-core-modules/ui/core/view';
 import { ScrollEventData } from 'tns-core-modules/ui/scroll-view';
-import { defer, interval, animationFrameScheduler } from 'rxjs';
-import { map, takeWhile } from 'rxjs/operators';
-import { SwipeGestureEventData } from 'tns-core-modules/ui/gestures';
-
-const timeElapsed = defer(() => {
-  const start = animationFrameScheduler.now();
-  return interval(1).pipe(map(() => Math.floor(Date.now() - start)));
-});
-
-const durationForAnimation = totalMs =>
-  timeElapsed.pipe(
-    map((elapsedMs: number) => elapsedMs / totalMs),
-    takeWhile(t => t <= 1),
-  );
-const amount = (d, h) => t => {
-  if (d * ((h / d) * t) < h - d) {
-    return h - d * ((h / d) * t);
-  }
-};
-const amountTwo = (height: number, full: number) => t => {
-  if (height * ((full / height) * t) < full) {
-    return height * ((full / height) * t);
-  }
-};
-// const elasticOut = t => Math.sin((-13.0 * (t + 1.0) * Math.PI) / 2) * Math.pow(2.0, -10.0 * t) + 1.0;
+import { GestureEventData } from 'tns-core-modules/ui/gestures';
 
 @Component({
   selector: 'ns-informante',
@@ -38,6 +13,7 @@ const amountTwo = (height: number, full: number) => t => {
   moduleId: module.id,
 })
 export class InformanteComponent implements OnInit {
+  public static IMAGE_MIN_HEIGHT = 48;
   public reports = [
     {
       title: 'Limpieza Pública',
@@ -72,61 +48,88 @@ export class InformanteComponent implements OnInit {
       icon: '\uf66f',
     },
   ];
+  @Input() public offset: number;
+  @Input() public imageOpacity: number = 1;
+  @Input() public dockedLabelOpacity: number = 0;
+  @Input() public dockedLabelTextOpacity: number = 0;
+  @ViewChild('imageContainer') public imageContainerRef: ElementRef;
+  @ViewChild('image') public imageRef: ElementRef;
+  @ViewChild('title') public titleRef: ElementRef;
 
-  public status = 'not scrolling';
-  public isHide = false;
-
-  constructor(page: Page, private router: RouterExtensions) {
-    page.actionBarHidden = true;
+  constructor(private animationsService: AnimationsService, private routerExtensions: RouterExtensions) {
+    this.offset = this.animationsService.getAnimationOffset;
   }
 
-  public ngOnInit() {
-    // registerElement('CardView', () => CardView);
+  public animateIn(view: View, duration: number, delay: number) {
+    view
+      .animate({
+        scale: { x: 1, y: 1 },
+        translate: { x: 0, y: 0 },
+        duration,
+        delay,
+        curve: AnimationCurve.easeOut,
+      })
+      .catch(() => {});
   }
 
-  public onScroll(args: ScrollEventData, lbl: StackLayout) {
-    this.status = 'scrolling';
+  public animateOut(view: View) {
+    view
+      .animate({
+        opacity: 0,
+        duration: 200,
+      })
+      .catch(() => {});
+  }
 
-    setTimeout(() => {
-      this.status = 'not scrolling';
-    }, 300);
-    console.log(args.scrollY);
-    if (args.scrollY > 0 && args.scrollY < 125 && !this.isHide) {
-      durationForAnimation(500)
-        .pipe(
-          // map(elasticOut),
-          map(amount(56, 170)),
-        )
-        .subscribe(heightValue => {
-          lbl.style.height = heightValue;
-          this.isHide = true;
-        });
+  public onScroll(args: ScrollEventData) {
+    const imageContainer = this.imageContainerRef.nativeElement;
+
+    const offset = args.scrollY < 0 ? 0 : args.scrollY;
+    const imageHeight = imageContainer.getActualSize().height;
+
+    this.applyImageTransition(offset, imageHeight);
+    this.applyTitleTransition(offset, imageHeight);
+    this.applyDockHeaderTransition(offset, imageHeight);
+  }
+
+  public onTap(args: GestureEventData) {
+    this.routerExtensions.back();
+  }
+
+  public ngOnInit() {}
+
+  private applyImageTransition(scrollOffset: number, imageHeight: number) {
+    const imageContainer = this.imageContainerRef.nativeElement;
+    const image = this.imageRef.nativeElement;
+    const imageHeightMaxChange = imageHeight - InformanteComponent.IMAGE_MIN_HEIGHT;
+
+    imageContainer.translateY = scrollOffset / 1.5;
+    image.scaleX = 1 + scrollOffset / imageHeightMaxChange;
+    image.scaleY = 1 + scrollOffset / imageHeightMaxChange;
+    this.imageOpacity = 1 - scrollOffset / imageHeightMaxChange;
+  }
+
+  private applyTitleTransition(scrollOffset: number, imageHeight: number) {
+    const imageHeightMaxChange = imageHeight - InformanteComponent.IMAGE_MIN_HEIGHT;
+    const title = this.titleRef.nativeElement;
+
+    if (imageHeightMaxChange < scrollOffset) {
+      title.translateX = -(scrollOffset - imageHeightMaxChange) / 1.2;
+      title.translateY = -(scrollOffset - imageHeightMaxChange) * 2;
+      title.scaleX = 1 - (scrollOffset - imageHeightMaxChange) / imageHeight;
+      title.scaleY = 1 - (scrollOffset - imageHeightMaxChange) / imageHeight;
+    } else {
+      title.translateX = 0;
+      title.translateY = 0;
+      title.scaleX = 1;
+      title.scaleY = 1;
     }
-
-    if (args.scrollY < 0 && args.scrollY > -125 && this.isHide) {
-      durationForAnimation(500)
-        .pipe(
-          // map(elasticOut),
-          map(amountTwo(56, 170)),
-        )
-        .subscribe(heightValue => {
-          lbl.style.height = heightValue;
-          this.isHide = false;
-        });
-    }
   }
 
-  public onSwipe(args: SwipeGestureEventData) {
-    console.log('Swipe!');
-    console.log('Object that triggered the event: ' + args.object);
-    console.log('View that triggered the event: ' + args.view);
-    console.log('Event name: ' + args.eventName);
-    console.log('Swipe Direction: ' + args.direction);
-
-    // this.direction = args.direction;
-  }
-
-  public goBack() {
-    this.router.back();
+  private applyDockHeaderTransition(scrollOffset: number, imageHeight: number) {
+    this.dockedLabelOpacity = this.imageOpacity <= 0 ? 1 : 0;
+    this.dockedLabelTextOpacity =
+      (scrollOffset - (imageHeight - InformanteComponent.IMAGE_MIN_HEIGHT)) / InformanteComponent.IMAGE_MIN_HEIGHT -
+      0.2;
   }
 }

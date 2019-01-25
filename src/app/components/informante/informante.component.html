@@ -1,19 +1,42 @@
-<StackLayout (swipe)="onSwipe($event)">
-  <FlexboxLayout [ngClass]="{ wrapped: isHide }" class="informesNav" #lbl>
-    <Label class="fas" color="#fff" padding="10 20" style="font-size: 20" text="&#xf060;" (tap)="goBack()"></Label>
-    <Label textWrap="false" color="#fff" text="INFORMANTE" textAlignment="center" [ngClass]="{ textLabel: isHide, textFull: !isHide }"></Label>
-    <Label *ngIf="!isHide" textWrap="false" width="90%" marginTop="10 auto" color="#fff" text="Observaciones sobre servicios de la municipalidad"
-      fontSize="14" textAlignment="center"></Label>
-  </FlexboxLayout>
-  <ScrollView orientation="vertical" scrollBarIndicatorVisible="false" (scroll)="onScroll($event, lbl)" (swipe)="onSwipe($event)">
-    <FlexboxLayout flexWrap="wrap" justifyContent="center" padding="10 0">
-      <CardView class="boxCard" margin="10" elevation="5" shadowOpacity="0.2" ripple="true" radius="10" *ngFor="let report of reports"
-        shadowColor="#0092CB" [nsRouterLink]="report.route">
-        <StackLayout class="card">
-          <Label class="fas" style="font-size: 20; color: #0092CB" text="{{ report.icon }}"></Label>
-          <Label class="title" marginTop="20" textWrap="true" [text]="report.title | uppercase"></Label>
-        </StackLayout>
-      </CardView>
-    </FlexboxLayout>
-  </ScrollView>
-</StackLayout>
+<StackLayou>
+  <StatusBar ios:barStyle="light" android:barStyle="#0092CB"></StatusBar>
+  <ActionBar background="#0092CB">
+    <NavigationButton visibility="collapsed"></NavigationButton>
+    <GridLayout columns="auto,auto" ios:padding="0 10" height="100%" width="100%">
+      <Label col="0" class="fas" color="#fff" fontSize="18" marginRight="20" text="&#xf060;" (tap)="onTap($event)"></Label>
+      <Label col="1" color="#fff" text="Municipalidad de La Molina"></Label>
+    </GridLayout>
+  </ActionBar>
+  <GridLayout>
+    <ScrollView (scroll)="onScroll($event)">
+      <StackLayout [minHeight]="minHeight">
+        <GridLayout #imageContainer [translateY]="offset" backgroundColor="#000000" class="header-background-view"
+          (loaded)="animateIn(imageContainer, 300, 0)" class="landmark-header">
+          <Image #image [opacity]="imageOpacity" src="~/app/img/informante.png" stretch="aspectFit"></Image>
+        </GridLayout>
+
+        <GridLayout #landmarkLayout rows="auto,auto" columns="auto,auto,*" translateY="500" (loaded)="animateIn(landmarkLayout, 300, 150)"
+          class="landmark-content">
+          <Label #title colSpan="3" textWrap="true" text="INFORMANTE" scaleX="0.7" scaleY="0.7" translateX="-30"
+            (loaded)="animateIn(title, 250, 150)" class="landmark-name"></Label>
+
+          <StackLayout #landmarkDescription row="1" colSpan="3" translateY="500" textWrap="true" (loaded)="animateIn(landmarkDescription, 250, 500)"
+            class="landmark-description">
+            <FlexboxLayout flexWrap="wrap" justifyContent="center" padding="10 0">
+              <CardView class="boxCard" margin="10" elevation="5" shadowOpacity="0.2" ripple="true" radius="10" *ngFor="let report of reports"
+                shadowColor="#0092CB" [nsRouterLink]="report.route">
+                <StackLayout class="card">
+                  <Label class="fas" style="font-size: 20; color: #0092CB" text="{{ report.icon }}"></Label>
+                  <Label class="title" marginTop="20" textWrap="true" [text]="report.title | uppercase"></Label>
+                </StackLayout>
+              </CardView>
+            </FlexboxLayout>
+          </StackLayout>
+        </GridLayout>
+      </StackLayout>
+    </ScrollView>
+    <GridLayout #dockedLabelContainer verticalAlignment="top" height="48" [opacity]="dockedLabelOpacity" class="backgroundBlue">
+      <Label text="INFORMANTE" [opacity]="dockedLabelTextOpacity" class="docked-label-text"></Label>
+    </GridLayout>
+  </GridLayout>
+</StackLayou>
