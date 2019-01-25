@@ -256,7 +256,7 @@ $darkblue: #070c1c;
 }
 
 .sosBorder {
-  margin-top: 180;
+  margin-top: 10%;
   width: 180;
   height: 180;
   border-radius: 180 180 180 180;
@@ -276,9 +276,9 @@ $darkblue: #070c1c;
 
 .sosForm {
   background: $white;
-  margin: 60 30 30;
+  margin: 2% 30 30;
   border-radius: 20 20 20 20;
-  padding: 30 20;
+  padding: 20 30;
 }
 
 .mainBtn {
@@ -290,4 +290,11 @@ $darkblue: #070c1c;
   border-radius: 10 10 10 10;
   background: $green;
   color: $white;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  margin: 10 0 5;
+  font-weight: bold;
+  color: #666;
 }
