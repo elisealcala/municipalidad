@@ -8,7 +8,7 @@
 $primary: #fff;
 $accent: #09f;
 $green: #96c93d;
-$darkGreen: #86b634;
+$darkGreen: #7db61a;
 $red: #eb3c16;
 $gray: #eeeeee;
 $opacityGray: rgba(255, 255, 255, 0.3);
@@ -185,7 +185,7 @@ $darkblue: #070c1c;
 
 .landmark-name {
   vertical-align: center;
-  font-size: 18;
+  font-size: 16;
   color: #666;
   margin: 16 0;
 }
@@ -211,7 +211,7 @@ $darkblue: #070c1c;
   vertical-align: center;
   font-size: 15;
   color: #666;
-  margin: 16 0;
+  margin: 0 0 20;
 }
 
 .landmark-footer {
@@ -227,11 +227,11 @@ $darkblue: #070c1c;
 
 .backgroundBlue {
   background-color: $darkblue;
-} 
+}
 
 .docked-label-text {
   margin: 0 16;
-  font-size: 18;
+  font-size: 16;
   color: #fff;
   vertical-align: center;
 }
@@ -297,7 +297,7 @@ $darkblue: #070c1c;
 }
 
 .sectionTitle {
-  font-size: 16px;
+  font-size: 18px;
   margin: 10 0 5;
   font-weight: bold;
   color: #666;

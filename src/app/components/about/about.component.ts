@@ -5,6 +5,7 @@ import { AnimationCurve } from 'tns-core-modules/ui/enums';
 import { View } from 'tns-core-modules/ui/core/view';
 import { ScrollEventData } from 'tns-core-modules/ui/scroll-view';
 import { GestureEventData } from 'tns-core-modules/ui/gestures';
+import * as utils from 'tns-core-modules/utils/utils';
 import { aboutMock } from './about';
 
 @Component({
@@ -98,5 +99,9 @@ export class AboutComponent implements OnInit {
     this.dockedLabelOpacity = this.imageOpacity <= 0 ? 1 : 0;
     this.dockedLabelTextOpacity =
       (scrollOffset - (imageHeight - AboutComponent.IMAGE_MIN_HEIGHT)) / AboutComponent.IMAGE_MIN_HEIGHT - 0.2;
+  }
+
+  private goToLocation(url) {
+    utils.openUrl(url);
   }
 }

@@ -1,22 +1,79 @@
 <StackLayout rows="auto, *" class="splashScreen">
-  <FlexboxLayout padding="5 0" class="gastoTopBar" flexDirection="row" width="100%" alignItems="center">
-    <Label class="fas" padding="10 20" style="font-size: 20" text="&#xf060;" (tap)="goBack()" color="#fff"></Label>
-    <Label textWrap="false" text="Contraloría Vecinal" fontSize="16" textAlignment="center"></Label>
-    <Label textWrap="false" [text]="currentPage" fontSize="14" marginLeft="20"></Label>
+  <FlexboxLayout
+    padding="5 0"
+    class="gastoTopBar"
+    flexDirection="row"
+    width="100%"
+    alignItems="center"
+  >
+    <Label
+      class="fas"
+      padding="10 20"
+      style="font-size: 20"
+      text="&#xf060;"
+      (tap)="goBack()"
+      color="#fff"
+    ></Label>
+    <Label
+      textWrap="false"
+      text="Contraloría Vecinal"
+      fontSize="16"
+      textAlignment="center"
+    ></Label>
+    <Label
+      textWrap="false"
+      [text]="currentPage"
+      fontSize="14"
+      marginLeft="20"
+    ></Label>
   </FlexboxLayout>
   <StackLayout row="1">
     <ScrollView scrollBarIndicatorVisible="false">
       <StackLayout>
-        <ActivityIndicator *ngIf="isBusy" [busy]="isBusy" class="activity-indicator"></ActivityIndicator>
+        <ActivityIndicator
+          *ngIf="isBusy"
+          [busy]="isBusy"
+          class="activity-indicator"
+        ></ActivityIndicator>
         <StackLayout *ngIf="!isBusy">
-          <FlexboxLayout padding="10 20" class="gastoTopBar" flexDirection="column">
-            <Label margin="0 0 10 0" fontWeight="bold" textWrap="true" text="Detalle de gastos" fontSize="16"
-              horizontalAlignment="center"></Label>
-            <Label textWrap="true" fontSize="16" [text]="contraloriaDetail"></Label>
+          <FlexboxLayout
+            padding="10 20"
+            class="gastoTopBar"
+            flexDirection="column"
+          >
+            <Label
+              margin="0 0 10 0"
+              fontWeight="bold"
+              textWrap="true"
+              text="Detalle de gastos"
+              fontSize="16"
+              horizontalAlignment="center"
+            ></Label>
+            <Label
+              textWrap="true"
+              fontSize="16"
+              [text]="contraloriaDetail"
+            ></Label>
           </FlexboxLayout>
-          <StackLayout class="gastoChild" *ngFor="let gasto of gastos" (tap)="goToExpense(gasto)">
-            <Label color="#50a8d6" fontSize="14" fontWeight="bold" [text]="gasto.nombre | titlecase" textWrap="true"></Label>
-            <Label marginTop="10px" fontSize="14" [text]="formatMoney(gasto.devengado)" color="#666" textWrap="true"></Label>
+          <StackLayout
+            class="gastoChild"
+            *ngFor="let gasto of gastos"
+            (tap)="goToExpense(gasto)"
+          >
+            <Label
+              color="#50a8d6"
+              fontSize="14"
+              fontWeight="bold"
+              [text]="gasto.nombre | titlecase"
+              textWrap="true"
+            ></Label>
+            <Label
+              marginTop="10px"
+              fontSize="14"
+              [text]="formatMoney(gasto.devengado)"
+              color="#666"
+              textWrap="true"
+            ></Label>
           </StackLayout>
         </StackLayout>
       </StackLayout>

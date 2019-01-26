@@ -4,8 +4,8 @@ import { Page } from 'tns-core-modules/ui/page/page';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { alert } from 'tns-core-modules/ui/dialogs';
-import { DataService } from '../../services/data.service';
-import { Gasto } from '../../models';
+import { DataService } from '../../../services/data.service';
+import { Gasto } from '../../../models';
 
 @Component({
   selector: 'ns-gasto',

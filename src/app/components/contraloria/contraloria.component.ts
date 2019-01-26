@@ -20,7 +20,6 @@ export class ContraloriaComponent implements OnInit {
 
   constructor(page: Page, private angRouter: Router, private router: RouterExtensions, private data: DataService) {
     page.actionBarHidden = true;
-    this.currentPage = data.currentPage;
     angRouter.events.forEach(event => {
       if (event instanceof NavigationEnd) {
         this.data.currentTitle.subscribe(title => (this.title = title));
@@ -29,7 +28,10 @@ export class ContraloriaComponent implements OnInit {
   }
 
   public ngOnInit() {
+    console.log(this.router.router.url);
     this.data.currentTitle.subscribe(title => (this.title = title));
+    this.data.setCurrentPage(1);
+    this.currentPage = this.data.currentPage;
     request({
       url: 'https://consulta-amigable-apirest.herokuapp.com/api/gastos/1',
       method: 'GET',

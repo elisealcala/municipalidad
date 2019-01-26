@@ -12,6 +12,10 @@ export class DataService {
 
   constructor() {}
 
+  public setCurrentPage(n: number) {
+    this.currentPage = n;
+  }
+
   public nextPage() {
     this.currentPage = this.currentPage + 1;
   }

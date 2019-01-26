@@ -2,37 +2,132 @@
   <StatusBar ios:barStyle="light" android:barStyle="#96c93d"></StatusBar>
   <ActionBar background="#96c93d">
     <NavigationButton visibility="collapsed"></NavigationButton>
-    <GridLayout columns="auto,auto" ios:padding="0 10" height="100%" width="100%">
-      <Label col="0" class="fas" color="#fff" fontSize="18" marginRight="20" text="&#xf060;" (tap)="onTap($event)"></Label>
+    <GridLayout
+      columns="auto,*,auto"
+      ios:padding="10 10"
+      height="100%"
+      width="100%"
+    >
+      <Label
+        col="0"
+        class="fas"
+        color="#fff"
+        fontSize="18"
+        marginRight="20"
+        text="&#xf060;"
+        (tap)="onTap($event)"
+      ></Label>
       <Label col="1" color="#fff" text="Municipalidad de La Molina"></Label>
+      <Label col="2" color="#fff" text=""></Label>
     </GridLayout>
   </ActionBar>
 
   <GridLayout>
     <ScrollView (scroll)="onScroll($event)">
       <StackLayout [minHeight]="minHeight">
-        <GridLayout #imageContainer [translateY]="offset" backgroundColor="#000000" class="header-background-view"
-          (loaded)="animateIn(imageContainer, 300, 0)" class="landmark-header">
-          <Image #image [opacity]="imageOpacity" src="~/app/img/informante.png" stretch="aspectFit"></Image>
+        <GridLayout
+          #imageContainer
+          [translateY]="offset"
+          backgroundColor="#000000"
+          (loaded)="animateIn(imageContainer, 300, 150)"
+        >
+          <Image
+            #image
+            [opacity]="imageOpacity"
+            src="~/app/img/logo-bg.png"
+            stretch="aspectFit"
+          ></Image>
         </GridLayout>
 
-        <GridLayout #landmarkLayout rows="auto,auto" columns="auto,auto,*" translateY="500" (loaded)="animateIn(landmarkLayout, 300, 150)"
-          class="landmark-content">
-          <Label #title colSpan="3" textWrap="true" text="Distrito de La Molina" scaleX="0.7" scaleY="0.7" translateX="-30"
-            (loaded)="animateIn(title, 250, 150)" class="landmark-name"></Label>
+        <GridLayout
+          #landmarkLayout
+          rows="auto,auto"
+          columns="auto,auto,*"
+          translateY="500"
+          (loaded)="animateIn(landmarkLayout, 300, 150)"
+          class="landmark-content"
+        >
+          <Label
+            #title
+            colSpan="3"
+            textWrap="true"
+            text="Distrito de La Molina"
+            scaleX="0.7"
+            scaleY="0.7"
+            translateX="-30"
+            (loaded)="animateIn(title, 250, 150)"
+            class="landmark-name"
+          ></Label>
 
-          <StackLayout #landmarkDescription row="1" colSpan="3" translateY="500" textWrap="true" (loaded)="animateIn(landmarkDescription, 250, 500)"
-            class="landmark-description">
-            <StackLayout *ngFor="let item of aboutContent">
-              <Label textWrap="true" class="sectionTitle" [text]="item.title"></Label>
-              <Label textWrap="true" [text]="item.description"></Label>
+          <StackLayout
+            #landmarkDescription
+            row="1"
+            colSpan="3"
+            translateY="500"
+            textWrap="true"
+            (loaded)="animateIn(landmarkDescription, 250, 500)"
+            class="landmark-description"
+          >
+            <Image src="~/app/img/la-laguna.jpg" stretch="aspectFit"></Image>
+            <StackLayout marginTop="20" *ngFor="let item of aboutContent">
+              <Label
+                textWrap="true"
+                class="sectionTitle"
+                [text]="item.title"
+              ></Label>
+              <Label
+                *ngIf="item.description"
+                textWrap="true"
+                [text]="item.description"
+              ></Label>
+              <StackLayout *ngIf="item.childrens">
+                <StackLayout *ngFor="let children of item.childrens">
+                  <FlexboxLayout
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
+                    <Label
+                      color="#666"
+                      fontWeight="bold"
+                      margin="10 0"
+                      fontSize="16"
+                      [text]="children.title"
+                      textWrap="true"
+                    ></Label>
+                    <Label
+                      text="¿Cómo llegar?"
+                      fontSize="13"
+                      color="#00a3ff"
+                      *ngIf="children.ubication"
+                      (tap)="goToLocation(children.ubication)"
+                    ></Label>
+                  </FlexboxLayout>
+                  <Image src="{{ children.image }}" stretch="aspectFit"></Image>
+                  <Label
+                    color="#666"
+                    [text]="children.description"
+                    margin="10 0 20"
+                    textWrap="true"
+                  ></Label>
+                </StackLayout>
+              </StackLayout>
             </StackLayout>
           </StackLayout>
         </GridLayout>
       </StackLayout>
     </ScrollView>
-    <GridLayout #dockedLabelContainer verticalAlignment="top" height="48" [opacity]="dockedLabelOpacity" class="docked-label-container">
-      <Label text="Distrito de La Molina" [opacity]="dockedLabelTextOpacity" class="docked-label-text"></Label>
+    <GridLayout
+      #dockedLabelContainer
+      verticalAlignment="top"
+      height="48"
+      [opacity]="dockedLabelOpacity"
+      class="docked-label-container"
+    >
+      <Label
+        text="Distrito de La Molina"
+        [opacity]="dockedLabelTextOpacity"
+        class="docked-label-text"
+      ></Label>
     </GridLayout>
   </GridLayout>
 </StackLayout>

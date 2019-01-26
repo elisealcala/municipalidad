@@ -3,7 +3,7 @@ import { Routes, Router } from '@angular/router';
 import { NativeScriptRouterModule } from 'nativescript-angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ContraloriaComponent } from './components/contraloria/contraloria.component';
-import { GastoComponent } from './components/gasto/gasto.component';
+import { GastoComponent } from './components/contraloria/gasto/gasto.component';
 import { InformanteComponent } from './components/informante/informante.component';
 import { AboutComponent } from './components/about/about.component';
 import { HelpComponent } from './components/help/help.component';

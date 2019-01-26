@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContraloriaComponent } from './components/contraloria/contraloria.component';
 import { DataService } from './services/data.service';
-import { GastoComponent } from './components/gasto/gasto.component';
+import { GastoComponent } from './components/contraloria/gasto/gasto.component';
 import { InformanteComponent } from './components/informante/informante.component';
 import { AboutComponent } from './components/about/about.component';
 import { AnimationsService } from './services/animation.service';
