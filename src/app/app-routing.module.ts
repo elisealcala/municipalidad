@@ -7,6 +7,7 @@ import { GastoComponent } from './components/contraloria/gasto/gasto.component';
 import { InformanteComponent } from './components/informante/informante.component';
 import { AboutComponent } from './components/about/about.component';
 import { HelpComponent } from './components/help/help.component';
+import { ServiceComponent } from './components/informante/service/service.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'informante',
     component: InformanteComponent,
+  },
+  {
+    path: 'service/:id',
+    component: ServiceComponent,
   },
   {
     path: 'about',

@@ -17,35 +17,33 @@ export class InformanteComponent implements OnInit {
   public reports = [
     {
       title: 'Limpieza Pública',
-      icon: '\uf66f',
+      icon: '\uf51a',
+      id: 1,
     },
     {
       title: 'Seguridad Vial',
-      icon: '\uf66f',
+      icon: '\uf637',
+      id: 2,
     },
     {
       title: 'Parques y Jardines',
-      icon: '\uf66f',
+      icon: '\uf1bb',
+      id: 3,
     },
     {
       title: 'Veredas y Pistas',
-      icon: '\uf66f',
+      icon: '\uf018',
+      id: 4,
     },
     {
       title: 'Ruidos Molestos',
-      icon: '\uf66f',
+      icon: '\uf027',
+      id: 5,
     },
     {
       title: 'Iluminación',
-      icon: '\uf66f',
-    },
-    {
-      title: 'Ruidos Molestos',
-      icon: '\uf66f',
-    },
-    {
-      title: 'Iluminación',
-      icon: '\uf66f',
+      icon: '\uf0eb',
+      id: 6,
     },
   ];
   @Input() public offset: number;
@@ -131,5 +129,9 @@ export class InformanteComponent implements OnInit {
     this.dockedLabelTextOpacity =
       (scrollOffset - (imageHeight - InformanteComponent.IMAGE_MIN_HEIGHT)) / InformanteComponent.IMAGE_MIN_HEIGHT -
       0.2;
+  }
+
+  private goToService(id) {
+    this.routerExtensions.navigate(['service', id]);
   }
 }

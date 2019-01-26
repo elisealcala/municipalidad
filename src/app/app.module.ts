@@ -12,6 +12,7 @@ import { AboutComponent } from './components/about/about.component';
 import { AnimationsService } from './services/animation.service';
 import { HelpComponent } from './components/help/help.component';
 import { TNSCheckBoxModule } from 'nativescript-checkbox/angular';
+import { ServiceComponent } from './components/informante/service/service.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -24,6 +25,7 @@ import { TNSCheckBoxModule } from 'nativescript-checkbox/angular';
     InformanteComponent,
     AboutComponent,
     HelpComponent,
+    ServiceComponent,
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [DataService, AnimationsService],
