@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { request, HttpResponse } from 'tns-core-modules/http';
 import { Page } from 'tns-core-modules/ui/page/page';
 import { RouterExtensions } from 'nativescript-angular/router';
@@ -10,7 +10,7 @@ import { Gasto } from '../../../models';
 @Component({
   selector: 'ns-gasto',
   templateUrl: './gasto.component.html',
-  moduleId: module.id,
+  moduleId: module.id
 })
 export class GastoComponent implements OnInit {
   public title: string;
@@ -27,9 +27,14 @@ export class GastoComponent implements OnInit {
     'Setiembre',
     'Octubre',
     'Noviembre',
-    'Diciembre',
+    'Diciembre'
   ];
-  public trimesters = ['Primer Trimestre', 'Segundo Trimestre', 'Tercer Trimestre', 'Cuarto Trimestre'];
+  public trimesters = [
+    'Primer Trimestre',
+    'Segundo Trimestre',
+    'Tercer Trimestre',
+    'Cuarto Trimestre'
+  ];
   public filterSelected = 'anual';
   public isBusy = true;
   public currentExpense: Gasto;
@@ -37,6 +42,13 @@ export class GastoComponent implements OnInit {
   public gastos: [];
   public gastosMensuales: [];
   public currentPage = 1;
+  public expensesInformation = {
+    pia: 'Presupuesto Institucional de Apertura',
+    pim: 'Presupuesto Institucional Modificado',
+    devengado: 'Obligación adquirida que aún no ha sido abonada',
+    girado: 'Obligación que ha sido pagada',
+    avance: 'Avance del gasto presupuestal',
+  };
 
   constructor(
     private data: DataService,
@@ -148,10 +160,9 @@ export class GastoComponent implements OnInit {
   }
 
   public openInformation(expense) {
-    console.log(expense);
     alert({
-      title: expense,
-      message: expense,
+      title: `${expense.toUpperCase()}`,
+      message: this.expensesInformation[expense],
       okButtonText: 'Listo',
     }).then(() => {
       console.log('Dialog closed!');
@@ -162,15 +173,7 @@ export class GastoComponent implements OnInit {
     this.data.changeTitle(gasto.nombre);
     this.data.changeData(gasto);
     this.data.nextPage();
-    this.router.navigate(['gasto', gasto.id], {
-      // animated: true,
-      // transition:
-      // {
-      //   name: 'slide',
-      //   duration: 300,
-      //   curve: 'linear'
-      // }
-    });
+    this.router.navigate(['gasto', gasto.id], {});
   }
 
   public goBack() {

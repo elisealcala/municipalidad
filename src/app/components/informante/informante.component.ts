@@ -45,6 +45,26 @@ export class InformanteComponent implements OnInit {
       icon: '\uf0eb',
       id: 6,
     },
+    {
+      title: 'Comercio Ambulatorio Informal',
+      icon: '\uf1bb',
+      id: 7,
+    },
+    {
+      title: 'Violencia Familiar',
+      icon: '\uf018',
+      id: 8,
+    },
+    {
+      title: 'Consumo de alcohol y drogas',
+      icon: '\uf027',
+      id: 9,
+    },
+    {
+      title: 'Maleza',
+      icon: '\uf0eb',
+      id: 10,
+    },
   ];
   @Input() public offset: number;
   @Input() public imageOpacity: number = 1;

@@ -7,7 +7,7 @@ export const aboutMock = [
   {
     title: 'Geografía',
     description:
-      'El distrito de La Molina se ubica en la parte central de la Costa peruana, en el departamento de Lima. Su extensión queda definida, aproximadamente, por las siguientes coordenadas geográficas',
+      'El distrito de La Molina se ubica en la parte central de la Costa peruana, en el departamento de Lima. Su extensión queda definida, aproximadamente, por las siguientes coordenadas geográficas: 12° 00\' 03 " a 12° 00\' 07 \' Latitud Sur 76° 57\' 00\' a 76° 51\' 00\' Longitud Oeste',
   },
   {
     title: 'Historia',

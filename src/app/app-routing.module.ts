@@ -8,6 +8,8 @@ import { InformanteComponent } from './components/informante/informante.componen
 import { AboutComponent } from './components/about/about.component';
 import { HelpComponent } from './components/help/help.component';
 import { ServiceComponent } from './components/informante/service/service.component';
+import { AlcaldeComponent } from './components/alcalde/alcalde.component';
+import { DatosUtilesComponent } from './components/datos-utiles/datos-utiles.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -38,6 +40,14 @@ const routes: Routes = [
   {
     path: 'help',
     component: HelpComponent,
+  },
+  {
+    path: 'alcalde',
+    component: AlcaldeComponent,
+  },
+  {
+    path: 'datos-utiles',
+    component: DatosUtilesComponent,
   },
 ];
 

@@ -18,26 +18,48 @@ export class HomeComponent implements OnInit {
       route: '../about',
     },
     {
-      title: 'Contraloría Vecinal',
+      title: 'TransparencITy',
       description: 'Espacio para ver los gastos de la municipalidad',
       icon: '\uf4c0',
       route: '../contraloria',
     },
     {
-      title: 'Quejas y Sugerencias',
-      description: 'Déjanos tus sugerencias',
-      icon: '\uf128',
+      title: 'Vecino Vigilante',
+      description: 'Informa sobre los servicios',
+      icon: '\uf06e',
+      route: '../informante',
     },
     {
       title: 'Datos Útiles',
       description: 'Teléfonos y datos importantes',
       icon: '\uf129',
+      route: '../datos-utiles',
     },
     {
-      title: 'Informante',
-      description: 'Informa sobre los servicios',
+      title: 'Habla con el alcalde',
+      description: 'Déjanos tus sugerencias',
+      icon: '\uf128',
+      route: '../alcalde',
+    },
+    {
+      title: 'Trámites Online',
+      // description: 'Espacio para ver los gastos de la municipalidad',
+      icon: '\uf4c0',
+    },
+    {
+      title: 'Recojo Inteligente',
+      // description: 'Informa sobre los servicios',
       icon: '\uf06e',
-      route: '../informante',
+    },
+    {
+      title: 'Eco Recicla',
+      // description: 'Teléfonos y datos importantes',
+      icon: '\uf129',
+    },
+    {
+      title: 'La Molina activate',
+      // description: 'Déjanos tus sugerencias',
+      icon: '\uf128',
     },
   ];
 

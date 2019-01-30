@@ -13,6 +13,8 @@ import { AnimationsService } from './services/animation.service';
 import { HelpComponent } from './components/help/help.component';
 import { TNSCheckBoxModule } from 'nativescript-checkbox/angular';
 import { ServiceComponent } from './components/informante/service/service.component';
+import { AlcaldeComponent } from './components/alcalde/alcalde.component';
+import { DatosUtilesComponent } from './components/datos-utiles/datos-utiles.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -26,6 +28,8 @@ import { ServiceComponent } from './components/informante/service/service.compon
     AboutComponent,
     HelpComponent,
     ServiceComponent,
+    AlcaldeComponent,
+    DatosUtilesComponent,
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [DataService, AnimationsService],

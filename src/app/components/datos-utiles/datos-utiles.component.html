@@ -1,0 +1,56 @@
+<StackLayout>
+  <StatusBar ios:barStyle="light" android:barStyle="#96c93d"></StatusBar>
+  <ActionBar backgroundColor="#96c93d">
+    <NavigationButton visibility="collapsed"></NavigationButton>
+    <GridLayout
+      columns="auto,*,auto"
+      ios:padding="10 10"
+      height="100%"
+      width="100%"
+    >
+      <Label
+        col="0"
+        class="fas"
+        color="#fff"
+        fontSize="18"
+        marginRight="20"
+        text="&#xf060;"
+        (tap)="onTap($event)"
+      ></Label>
+      <Label col="1" color="#fff" text="Municipalidad de La Molina"></Label>
+      <Label col="2" color="#fff" text=""></Label>
+    </GridLayout>
+  </ActionBar>
+  <StackLayout>
+    <Label
+      color="#96c93d"
+      fontWeight="bold"
+      fontSize="18"
+      textAlignment="center"
+      margin="20 0"
+      text="Datos Útiles"
+    ></Label>
+    <ListView [items]="information" height="100%">
+      <ng-template let-info="item">
+        <FlexboxLayout flexDirection="row" class="itemInfo">
+          <!-- <Image [src]="country.imageSrc" class="thumb img-circle"></Image> -->
+          <Label
+            [text]="info.title"
+            fontWeight="bold"
+            class="list-group-item-heading"
+            verticalAlignment="center"
+            textWrap="true"
+            style="width: 60%"
+          ></Label>
+          <Label
+            [text]="info.number"
+            class="list-group-item-heading"
+            verticalAlignment="center"
+            textWrap="true"
+            style="width: 60%"
+          ></Label>
+        </FlexboxLayout>
+      </ng-template>
+    </ListView>
+  </StackLayout>
+</StackLayout>
