@@ -2,7 +2,7 @@
   <FlexboxLayout padding="5 0" class="gastoTopBar" flexDirection="row" width="100%" alignItems="center">
     <Label class="fas" padding="10 20" style="font-size: 20" text="&#xf060;" (tap)="goBack()" color="#fff"></Label>
     <Label textWrap="false" text="TransparencITy" fontSize="16" textAlignment="center"></Label>
-    <Label textWrap="false" [text]="currentPage" fontSize="14" marginLeft="20"></Label>
+    <Label textWrap="false" text="{{currentPage}}/5" fontSize="14" marginLeft="20"></Label>
   </FlexboxLayout>
   <StackLayout>
     <ScrollView scrollBarIndicatorVisible="false">
@@ -14,12 +14,13 @@
             <Label marginTop="15" fontWeight="bold" fontSize="16" [text]="getExpense(currentExpense.devengado)"></Label>
           </FlexboxLayout>
           <Label margin="20 20 10" fontSize="16" text="Estructura del gasto" textWrap="true" color="#666"></Label>
-          <StackLayout class="main-expenses">
+          <StackLayout class="main-expenses" *ngIf="gastos.length">
             <StackLayout class="single-expense" *ngFor="let gasto of gastos" (tap)="goToExpense(gasto)">
-              <Label color="#50a8d6" fontSize="14" fontWeight="bold" [text]="gasto.nombre | titlecase" textWrap="true"></Label>
+              <Label color="#7db61a" fontSize="14" fontWeight="bold" [text]="gasto.nombre | titlecase" textWrap="true"></Label>
               <Label marginTop="10px" fontSize="14" [text]="getExpense(gasto.devengado)" color="#666" textWrap="true"></Label>
             </StackLayout>
           </StackLayout>
+          <Label *ngIf="!gastos.length" margin="10 20" text="No tenemos resultados."></Label>
           <Label margin="20 20 10" fontSize="16" text="Detalle del gasto" textWrap="true" color="#666"></Label>
           <FlexBoxLayout class="filter-container">
             <StackLayout (tap)="selectYear()" [ngClass]="{'active': filterSelected === 'anual'}" class="filter-month">
@@ -32,28 +33,43 @@
               <Label fontSize="14" text="Mensual" textAlignment="center"></Label>
             </StackLayout>
           </FlexBoxLayout>
-          <StackLayout *ngIf="filterSelected === 'mensual'" class="main-expenses">
-            <FlexBoxLayout justifyContent="space-between" class="single-expense" *ngFor="let gasto of gastosMensuales">
-              <Label fontSize="14" color="#50a8d6" fontWeight="bold" [text]="gasto.month | titlecase"></Label>
-              <Label fontSize="14" color="#50a8d6" fontWeight="bold" [text]="expense | uppercase"></Label>
-              <Label fontSize="14" color="#666" [text]="getExpense(gasto.devengado)"></Label>
-            </FlexBoxLayout>
-          </StackLayout>
-          <StackLayout *ngIf="filterSelected === 'trimestral'" class="main-expenses">
-            <FlexBoxLayout justifyContent="space-between" class="single-expense" *ngFor="let gasto of gastosMensuales">
-              <Label fontSize="14" color="#50a8d6" fontWeight="bold" [text]="gasto.trimester | titlecase"></Label>
-              <Label fontSize="14" color="#50a8d6" fontWeight="bold" [text]="expense | uppercase"></Label>
-              <Label fontSize="14" color="#666" [text]="getExpense(gasto.devengado)"></Label>
-            </FlexBoxLayout>
-          </StackLayout>
-          <StackLayout *ngIf="filterSelected === 'anual'" class="main-expenses">
-            <FlexBoxLayout justifyContent="space-between" class="single-expense" *ngFor="let expense of currentExpenseKeys">
-              <FlexBoxLayout alignItems="center">
-                <Label fontSize="14" color="#50a8d6" fontWeight="bold" [text]="expense | uppercase"></Label>
-                <Label marginLeft="10" class="fas" style="font-size: 16" text="&#xf059;" color="#50a8d6" (tap)="openInformation(expense)"></Label>
+          <StackLayout *ngIf="filterSelected === 'mensual'">
+            <StackLayout *ngIf="gastosMensuales.length" class="main-expenses">
+              <FlexBoxLayout justifyContent="space-between" class="single-expense" *ngFor="let gasto of gastosMensuales">
+                <Label fontSize="14" color="#7db61a" fontWeight="bold" [text]="gasto.month | titlecase"></Label>
+                <Label fontSize="14" color="#7db61a" fontWeight="bold" [text]="expense | uppercase"></Label>
+                <Label fontSize="14" color="#666" [text]="getExpense(gasto.devengado)"></Label>
               </FlexBoxLayout>
-              <Label fontSize="14" color="#666" [text]="getExpense(currentExpense[expense], expense)"></Label>
-            </FlexBoxLayout>
+            </StackLayout>
+            <StackLayout *ngIf="!gastosMensuales.length" margin="10 20">
+              <Label text="No tenemos resultados."></Label>
+            </StackLayout>
+          </StackLayout>
+          <StackLayout *ngIf="filterSelected === 'trimestral'">
+            <StackLayout *ngIf="gastosMensuales.length" class="main-expenses">
+              <FlexBoxLayout justifyContent="space-between" class="single-expense" *ngFor="let gasto of gastosMensuales">
+                <Label fontSize="14" color="#7db61a" fontWeight="bold" [text]="gasto.trimester | titlecase"></Label>
+                <Label fontSize="14" color="#7db61a" fontWeight="bold" [text]="expense | uppercase"></Label>
+                <Label fontSize="14" color="#666" [text]="getExpense(gasto.devengado)"></Label>
+              </FlexBoxLayout>
+            </StackLayout>
+            <StackLayout *ngIf="!gastosMensuales.length" margin="10 20">
+              <Label text="No tenemos resultados."></Label>
+            </StackLayout>
+          </StackLayout>
+          <StackLayout *ngIf="filterSelected === 'anual'">
+            <StackLayout *ngIf="currentExpenseKeys.length" class="main-expenses">
+              <FlexBoxLayout justifyContent="space-between" class="single-expense" *ngFor="let expense of currentExpenseKeys">
+                <FlexBoxLayout alignItems="center">
+                  <Label fontSize="14" color="#7db61a" fontWeight="bold" [text]="expense | uppercase"></Label>
+                  <Label marginLeft="10" class="fas" style="font-size: 16" text="&#xf059;" color="#7db61a" (tap)="openInformation(expense)"></Label>
+                </FlexBoxLayout>
+                <Label fontSize="14" color="#666" [text]="getExpense(currentExpense[expense], expense)"></Label>
+              </FlexBoxLayout>
+            </StackLayout>
+            <StackLayout *ngIf="!currentExpenseKeys.length" margin="10 20">
+              <Label text="no tenemos resultados."></Label>
+            </StackLayout>
           </StackLayout>
         </StackLayout>
       </StackLayout>
