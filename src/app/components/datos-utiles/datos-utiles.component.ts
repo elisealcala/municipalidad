@@ -12,7 +12,7 @@ export class DatosUtilesComponent implements OnInit {
   public information = [
     {
       title: 'Serenazgo',
-      number: '207-3000 / 313-4495',
+      number: '207-3000\n313-4495',
     },
     {
       title: 'Fiscalización',
@@ -24,15 +24,15 @@ export class DatosUtilesComponent implements OnInit {
     },
     {
       title: 'Emergencias',
-      number: '105 PNP    116 BOMBEROS',
+      number: '105 PNP\n116 BOMBEROS',
     },
     {
       title: 'Comisarías',
-      number: 'Santa Felicia 348-7213',
+      number: 'Santa Felicia 348-7213\n\nLaMolina 368-1871\n\nLasPraderas 987505934',
     },
     {
       title: 'Alórentas',
-      number: '313-4444 (323, 360, 361)',
+      number: '313-4444\n(323, 360, 361)',
     },
   ];
 

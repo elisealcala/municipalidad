@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
+import { request, HttpResponse } from 'tns-core-modules/http';
 import { AnimationsService } from '../../services/animation.service';
 import { AnimationCurve } from 'tns-core-modules/ui/enums';
 import { View } from 'tns-core-modules/ui/core/view';
@@ -76,6 +77,14 @@ export class InformanteComponent implements OnInit {
 
   constructor(private animationsService: AnimationsService, private routerExtensions: RouterExtensions) {
     this.offset = this.animationsService.getAnimationOffset;
+    request({
+      url: 'http://190.223.43.174:8080/lamolina/api/tipoInformes',
+      method: 'GET',
+    }).then((response: HttpResponse) => {
+      const str = response.content.toJSON();
+      console.log(str);
+      this.reports = str;
+    });
   }
 
   public animateIn(view: View, duration: number, delay: number) {

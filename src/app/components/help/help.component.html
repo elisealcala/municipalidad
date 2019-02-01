@@ -29,7 +29,7 @@
     <Button class="sosButton" text="Cancelar" (tap)="onTap($event)"></Button>
   </StackLayout>
   <StackLayout *ngIf="timeLeft === 0">
-    <FlexboxLayout flexDirection="column" class="sosForm">
+    <FlexboxLayout flexDirection="column" class="sosForm" *ngIf="!send">
       <Label color="#666" margin="10 0 5 0" text="Número de teléfono"></Label>
       <TextField
         hint="Número de teléfono"
@@ -64,7 +64,7 @@
     <Label
       textWrap="true"
       textAlignment="center"
-      margin="0 20"
+      margin="20"
       *ngIf="send"
       color="#fff"
       [text]="confirmation"

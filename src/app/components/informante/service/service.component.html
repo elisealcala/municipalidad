@@ -2,23 +2,61 @@
   <StatusBar ios:barStyle="light" android:barStyle="#96c93d"></StatusBar>
   <ActionBar background="#96c93d">
     <NavigationButton visibility="collapsed"></NavigationButton>
-    <GridLayout columns="auto,*,auto" ios:padding="10 10" height="100%" width="100%">
-      <Label col="0" class="fas" color="#fff" fontSize="18" marginRight="20" text="&#xf060;" (tap)="onTap($event)"></Label>
+    <GridLayout
+      columns="auto,*,auto"
+      ios:padding="10 10"
+      height="100%"
+      width="100%"
+    >
+      <Label
+        col="0"
+        class="fas"
+        color="#fff"
+        fontSize="18"
+        marginRight="20"
+        text="&#xf060;"
+        (tap)="onTap($event)"
+      ></Label>
       <Label col="1" color="#fff" text="Municipalidad de La Molina"></Label>
       <Label col="2" color="#fff" text=""></Label>
     </GridLayout>
   </ActionBar>
   <StackLayout padding="20" background="#f5f5f5" height="100%">
-    <Label [text]="title[id]" fontSize="16" fontWeight="bold" textAlignment="center" color="#0373a0"></Label>
-    <StackLayout background="#fff" borderRadius="10 10 10 10" padding="15 10" marginTop="40">
-      <TextField hint="Número de teléfono" autocorrect="false" class="input" #secondTextFieldId marginBottom="10"></TextField>
+    <Label
+      [text]="title[id]"
+      fontSize="16"
+      fontWeight="bold"
+      textAlignment="center"
+      color="#7db61a"
+    ></Label>
+    <StackLayout
+      background="#fff"
+      borderRadius="10 10 10 10"
+      padding="15 10"
+      marginTop="40"
+    >
+      <TextField
+        hint="Número de teléfono"
+        autocorrect="false"
+        class="input"
+        #secondTextFieldId
+        marginBottom="10"
+      ></TextField>
       <TextField hint="DNI" autocorrect="false" marginBottom="10"></TextField>
-      <TextView hint="Enter some text" class="input input-border" marginBottom="10"></TextView>
-      <Label fontSize="13" text="Captura una foto o envia un audio" color="#666"></Label>
-      <FlexboxLayout width="50%" margin="15 auto" justifyContent="space-between">
+      <TextView
+        hint="Enter some text"
+        class="input input-border"
+        marginBottom="10"
+      ></TextView>
+      <!-- <Label
+        fontSize="13"
+        text="Captura una foto o envia un audio"
+        color="#666"
+      ></Label> -->
+      <!-- <FlexboxLayout width="50%" margin="15 auto" justifyContent="space-between">
         <Label class="fas" text="&#xf030;" fontSize="25" color="#96c93d"></Label>
         <Label class="fas" text="&#xf130;" fontSize="25" color="#96c93d"></Label>
-      </FlexboxLayout>
+      </FlexboxLayout> -->
       <Button class="mainBtn" text="Enviar"></Button>
     </StackLayout>
   </StackLayout>

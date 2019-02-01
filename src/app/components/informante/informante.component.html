@@ -2,8 +2,21 @@
   <StatusBar ios:barStyle="light" android:barStyle="#96c93d"></StatusBar>
   <ActionBar background="#96c93d">
     <NavigationButton visibility="collapsed"></NavigationButton>
-    <GridLayout columns="auto,*,auto" ios:padding="10 10" height="100%" width="100%">
-      <Label col="0" class="fas" color="#fff" fontSize="18" marginRight="20" text="&#xf060;" (tap)="onTap($event)"></Label>
+    <GridLayout
+      columns="auto,*,auto"
+      ios:padding="10 10"
+      height="100%"
+      width="100%"
+    >
+      <Label
+        col="0"
+        class="fas"
+        color="#fff"
+        fontSize="18"
+        marginRight="20"
+        text="&#xf060;"
+        (tap)="onTap($event)"
+      ></Label>
       <Label col="1" color="#fff" text="Municipalidad de La Molina"></Label>
       <Label col="2" color="#fff" text=""></Label>
     </GridLayout>
@@ -11,24 +24,81 @@
   <GridLayout>
     <ScrollView (scroll)="onScroll($event)" scrollBarIndicatorVisible="false">
       <StackLayout [minHeight]="minHeight">
-        <GridLayout #imageContainer [translateY]="offset" backgroundColor="#000000" class="header-background-view"
-          (loaded)="animateIn(imageContainer, 300, 0)" class="landmark-header">
-          <Image #image [opacity]="imageOpacity" src="~/app/img/molina-1.png" stretch="aspectFit"></Image>
+        <GridLayout
+          #imageContainer
+          [translateY]="offset"
+          backgroundColor="#000000"
+          class="header-background-view"
+          (loaded)="animateIn(imageContainer, 300, 0)"
+          class="landmark-header"
+        >
+          <Image
+            #image
+            [opacity]="imageOpacity"
+            src="~/app/img/molina-1.png"
+            stretch="aspectFit"
+          ></Image>
         </GridLayout>
 
-        <GridLayout #landmarkLayout rows="auto,auto" columns="auto,auto,*" translateY="500" (loaded)="animateIn(landmarkLayout, 300, 150)"
-          class="landmark-content">
-          <Label #title colSpan="3" textWrap="true" text="Vecino Vigilante" scaleX="0.7" scaleY="0.7" translateX="-30"
-            (loaded)="animateIn(title, 250, 150)" class="landmark-name"></Label>
+        <GridLayout
+          #landmarkLayout
+          rows="auto,auto"
+          columns="auto,auto,*"
+          translateY="500"
+          (loaded)="animateIn(landmarkLayout, 300, 150)"
+          class="landmark-content"
+        >
+          <Label
+            #title
+            colSpan="3"
+            textWrap="true"
+            text="Vecino Vigilante"
+            scaleX="0.7"
+            scaleY="0.7"
+            translateX="-30"
+            (loaded)="animateIn(title, 250, 150)"
+            class="landmark-name"
+          ></Label>
 
-          <StackLayout #landmarkDescription row="1" colSpan="3" translateY="500" textWrap="true" (loaded)="animateIn(landmarkDescription, 250, 500)"
-            class="landmark-description">
-            <FlexboxLayout flexWrap="wrap" justifyContent="center" padding="10 0 180">
-              <CardView class="boxCard" margin="10" elevation="5" shadowOpacity="0.2" ripple="true" radius="10" *ngFor="let report of reports"
-                shadowColor="#96c93d" (tap)="goToService(report.id)">
+          <StackLayout
+            #landmarkDescription
+            row="1"
+            colSpan="3"
+            translateY="500"
+            textWrap="true"
+            (loaded)="animateIn(landmarkDescription, 250, 500)"
+            class="landmark-description"
+          >
+            <FlexboxLayout
+              flexWrap="wrap"
+              justifyContent="center"
+              padding="10 0 180"
+            >
+              <CardView
+                class="boxCard"
+                margin="10"
+                elevation="5"
+                shadowOpacity="0.2"
+                ripple="true"
+                radius="10"
+                *ngFor="let report of reports"
+                shadowColor="#96c93d"
+                (tap)="goToService(report.id)"
+              >
                 <StackLayout class="card">
-                  <Label class="fas" fontSize="25" color="#96c93d" ; text="{{ report.icon }}"></Label>
-                  <Label class="title" marginTop="20" textWrap="true" [text]="report.title | titlecase"></Label>
+                  <Label
+                    class="fas"
+                    fontSize="25"
+                    color="#96c93d"
+                    ;
+                    text="{{ report.icon }}"
+                  ></Label>
+                  <Label
+                    class="title"
+                    marginTop="20"
+                    textWrap="true"
+                    [text]="report.descripcion | titlecase"
+                  ></Label>
                 </StackLayout>
               </CardView>
             </FlexboxLayout>
@@ -36,8 +106,18 @@
         </GridLayout>
       </StackLayout>
     </ScrollView>
-    <GridLayout #dockedLabelContainer verticalAlignment="top" height="48" [opacity]="dockedLabelOpacity" class="backgroundBlue">
-      <Label text="Vecino Vigilante" [opacity]="dockedLabelTextOpacity" class="docked-label-text"></Label>
+    <GridLayout
+      #dockedLabelContainer
+      verticalAlignment="top"
+      height="48"
+      [opacity]="dockedLabelOpacity"
+      backgroundColor="#7db61a"
+    >
+      <Label
+        text="Vecino Vigilante"
+        [opacity]="dockedLabelTextOpacity"
+        class="docked-label-text"
+      ></Label>
     </GridLayout>
   </GridLayout>
 </StackLayout>
