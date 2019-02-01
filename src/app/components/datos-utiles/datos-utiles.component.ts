@@ -11,27 +11,27 @@ import { GestureEventData } from 'tns-core-modules/ui/gestures';
 export class DatosUtilesComponent implements OnInit {
   public information = [
     {
-      title: 'Serenazgo',
+      title: '• Serenazgo',
       number: '207-3000\n313-4495',
     },
     {
-      title: 'Fiscalización',
+      title: '• Fiscalización',
       number: '313-4444 (247)',
     },
     {
-      title: 'Central Telf.',
+      title: '• Central Telf.',
       number: '313-4444',
     },
     {
-      title: 'Emergencias',
+      title: '• Emergencias',
       number: '105 PNP\n116 BOMBEROS',
     },
     {
-      title: 'Comisarías',
+      title: '• Comisarías',
       number: 'Santa Felicia 348-7213\n\nLaMolina 368-1871\n\nLasPraderas 987505934',
     },
     {
-      title: 'Alórentas',
+      title: '• Alórentas',
       number: '313-4444\n(323, 360, 361)',
     },
   ];
